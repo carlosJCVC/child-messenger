@@ -27,6 +27,20 @@ class WritersTableSeeder extends Seeder
                 'password' => bcrypt('homerosimpson'),
                 'remember_token' => '',
             ],
+            [
+                'name' => 'Armando',
+                'lastname' => 'Barrera',
+                'email' => 'armando@gmail.com',
+                'password' => bcrypt('armando'),
+                'remember_token' => '',
+            ],
+            [
+                'name' => 'Flanders',
+                'lastname' => 'fladers',
+                'email' => 'flanders@gmail.com',
+                'password' => bcrypt('flanders'),
+                'remember_token' => '',
+            ],
         ];
 
         foreach ($writers as $writer) {
