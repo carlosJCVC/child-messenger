@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\WriterRequest;
+use App\Models\Writer;
 use DB;
 
 class WriterController extends Controller
@@ -27,7 +29,7 @@ class WriterController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.writers.create');
     }
 
     /**
@@ -36,9 +38,14 @@ class WriterController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(WriterRequest $request)
     {
-        //
+        $input = $request->all();
+
+        $writer = new Writer($input);
+        $writer->save();
+
+        return redirect(route('admin.writers.index'))->with([ 'message' => 'Curso creado exitosamente!', 'alert-type' => 'success' ]);
     }
 
     /**

@@ -17,7 +17,19 @@ Route::get('/', function () {
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin'], function () {
     Route::get('writers', [
-        'as' => 'writers',
+        'as' => 'writers.index',
         'uses' => 'WriterController@index',
+    ]);
+    Route::get('writers/create', [
+        'as' => 'writers.create',
+        'uses' => 'WriterController@create',
+    ]);
+    Route::post('writers/store', [
+        'as' => 'writers.store',
+        'uses' => 'WriterController@store',
+    ]);
+    Route::get('writers/{writer}/edit', [
+        'as' => 'writers.edit',
+        'uses' => 'WriterController@create',
     ]);
 });

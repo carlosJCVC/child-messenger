@@ -11,7 +11,7 @@
 @section('content')
     <div class="title">
         <h1>Lista de escritores</h1>
-        <a href="" class="btn btn-outline-light rounded-pill">Crear Nuevo</a>
+    <a href="{{ route('admin.writers.create')}}" class="btn btn-outline-light rounded-pill">Crear Nuevo</a>
     </div>
     <div class="table-responsive-xl">
         <table class="table table-sm table-hover mt-2">
@@ -32,7 +32,7 @@
                         <td>{{ $writer->lastname }}</td>
                         <td>{{ $writer->email }}</td>
                         <td>
-                            <a href="#" class="btn btn-outline-success rounded-pill">Editar</a>
+                        <a href="{{ route('admin.writers.edit') }}" class="btn btn-outline-success rounded-pill">Editar</a>
                             <a href="" class="btn btn-outline-danger rounded-pill">Eliminar</a>
                         </td>
                     </tr>
