@@ -44,4 +44,33 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin'], fu
         'as' => 'writers.destroy',
         'uses' => 'WriterController@destroy',
     ]);
+
+    Route::get('redactors', [
+        'as' => 'redactors.index',
+        'uses' => 'RedactorController@index',
+    ]);
+    Route::get('redactors/create', [
+        'as' => 'redactors.create',
+        'uses' => 'RedactorController@create',
+    ]);
+    Route::post('redactors/store', [
+        'as' => 'redactors.store',
+        'uses' => 'RedactorController@store',
+    ]);
+    Route::get('redactors/{redactor}/edit', [
+        'as' => 'redactors.edit',
+        'uses' => 'RedactorController@edit',
+    ]);
+    Route::put('redactors/{redactor}', [
+        'as' => 'redactors.update',
+        'uses' => 'RedactorController@update',
+    ]);
+    Route::patch('redactors/{redactor}', [
+        'as' => 'redactors.update',
+        'uses' => 'RedactorController@update',
+    ]);
+    Route::delete('redactors/{redactor}', [
+        'as' => 'redactors.destroy',
+        'uses' => 'RedactorController@destroy',
+    ]);
 });
