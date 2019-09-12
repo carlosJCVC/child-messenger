@@ -14,3 +14,10 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin'], function () {
+    Route::get('writers', [
+        'as' => 'writers',
+        'uses' => 'WriterController@index',
+    ]);
+});
