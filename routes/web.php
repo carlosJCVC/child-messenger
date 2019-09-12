@@ -30,6 +30,18 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin'], fu
     ]);
     Route::get('writers/{writer}/edit', [
         'as' => 'writers.edit',
-        'uses' => 'WriterController@create',
+        'uses' => 'WriterController@edit',
+    ]);
+    Route::put('writers/{writer}', [
+        'as' => 'writers.update',
+        'uses' => 'WriterController@update',
+    ]);
+    Route::patch('writers/{writer}', [
+        'as' => 'writers.update',
+        'uses' => 'WriterController@update',
+    ]);
+    Route::delete('writers/{writer}', [
+        'as' => 'writers.destroy',
+        'uses' => 'WriterController@destroy',
     ]);
 });

@@ -14,7 +14,17 @@
     </div>
 
     <div class="card mt-2">
-        @include('admin.writers.form')
+        <div class="card-body">
+            <form class="form-validation" method="POST" action="{{ route('admin.writers.store') }}" novalidate>
+                {{ csrf_field() }}
+                @include('admin.writers.form')
+
+                <div class="text-center">
+                    <button class="btn btn-outline-success" type="submit">Guardar</button>
+                    <a href="{{ route('admin.writers.index') }}" class="btn btn-outline-danger">Cancelar</a>
+                </div>
+            </form>
+        </div>
     </div>
     
 @endsection

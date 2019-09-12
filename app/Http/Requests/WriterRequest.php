@@ -42,8 +42,9 @@ class WriterRequest extends FormRequest
                 return [
                     'name' => 'required|max:100',
                     'lastname' => 'required|max:100',
-                    'email' => 'required|unique:users,email,' . $this->user->id,
-                    'password' => 'between:3,32',
+                    // 'email' => 'required|unique:users,email,' . $this->user->id,
+                    'email' => 'required|email|unique:users,email',
+                    'password' => 'required|between:3,32',
                     // 'password_confirm' => 'between:3,32|same:password',
                 ];
             }
@@ -66,6 +67,7 @@ class WriterRequest extends FormRequest
             'email.required' => 'El campo :attribute es obligatorio.',
             'email.unique' => 'El campo :attribute ya existe.',
             'password.required' => 'El campo :attribute es obligatorio.',
+            'password.between' => 'El campo :attribute debe tener 3 a 32 caracteres.',
         ];
     }
 

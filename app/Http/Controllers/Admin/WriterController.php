@@ -65,9 +65,9 @@ class WriterController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Writer $writer)
     {
-        //
+        return view('admin.writers.edit', [ 'writer' => $writer ]);
     }
 
     /**
@@ -77,9 +77,13 @@ class WriterController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(WriterRequest $request, Writer $writer)
     {
-        //
+        $input = $request->all();
+
+        $writer->update($input);
+
+        return redirect()->route('admin.writers.index')->with(['message' => 'Curso actualizado exitosamente!', 'alert-type' => 'success']);
     }
 
     /**
@@ -88,8 +92,10 @@ class WriterController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Writer $writer)
     {
-        //
+        $writer->delete();
+
+        return redirect()->route('admin.writers.index')->with(['message' => 'Curso eliminado exitosamente!', 'alert-type' => 'success']);
     }
 }

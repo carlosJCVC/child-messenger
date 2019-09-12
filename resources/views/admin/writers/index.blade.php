@@ -32,8 +32,13 @@
                         <td>{{ $writer->lastname }}</td>
                         <td>{{ $writer->email }}</td>
                         <td>
-                        <a href="{{ route('admin.writers.edit') }}" class="btn btn-outline-success rounded-pill">Editar</a>
-                            <a href="" class="btn btn-outline-danger rounded-pill">Eliminar</a>
+                            <a href="{{ route('admin.writers.edit', $writer->id ) }}" class="btn btn-outline-success rounded-pill">Editar</a>
+                            <form method="POST" style="display:inline-block" action="{{ route('admin.writers.destroy', $writer->id) }}">
+                                {{ csrf_field() }}
+                                {{ method_field('DELETE') }}
+                                
+                                <button type="submit" class="btn btn-outline-danger rounded-pill">Eliminar</button>
+                            </form>
                         </td>
                     </tr>
                 @endforeach
