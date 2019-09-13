@@ -73,4 +73,33 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin'], fu
         'as' => 'redactors.destroy',
         'uses' => 'RedactorController@destroy',
     ]);
+
+    Route::get('areas', [
+        'as' => 'areas.index',
+        'uses' => 'AreaController@index',
+    ]);
+    Route::get('areas/create', [
+        'as' => 'areas.create',
+        'uses' => 'AreaController@create',
+    ]);
+    Route::post('areas/store', [
+        'as' => 'areas.store',
+        'uses' => 'AreaController@store',
+    ]);
+    Route::get('areas/{area}/edit', [
+        'as' => 'areas.edit',
+        'uses' => 'AreaController@edit',
+    ]);
+    Route::put('areas/{area}', [
+        'as' => 'areas.update',
+        'uses' => 'AreaController@update',
+    ]);
+    Route::patch('areas/{area}', [
+        'as' => 'areas.update',
+        'uses' => 'AreaController@update',
+    ]);
+    Route::delete('areas/{area}', [
+        'as' => 'areas.destroy',
+        'uses' => 'AreaController@destroy',
+    ]);
 });
