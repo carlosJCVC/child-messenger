@@ -14,82 +14,71 @@
 
     <div class="wrapper">
         <header class="header">
-            <a href="#" class="logo">
-                <img src="{{ asset('assets/img/logo.png') }}" alt="logo">
-            </a>
-    
-            <nav>
-                <div>
-                    <a href="#" class="navbar-btn sidebar-toggle" data-toggle="offcanvas" role="button">
-                        <i class="fas fa-bars fa-2x"></i>
-                    </a>
-                </div>
-        
-                <div class="navbar-right">
-                    <ul class="nav navbar-nav">
-                        <li class="dropdown user user-menu">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <img src="{!! asset('assets/img/authors/avatar3.jpg') !!} " width="35" class="img-circle img-responsive pull-left" height="35" alt="riot">
-                                <div class="riot">
-                                    <div>
-                                        <p class="user_name_max">Carlos Veizaga</p>
-                                        <span>
-                                            <i class="caret"></i>
-                                        </span>
-                                    </div>
-                                </div>
+            <nav class="navbar navbar-expand-lg navbar-dark custom-navbar">
+                <a class="navbar-brand" href="#">MENSAJERO</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarText">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#">
+                                <i class="fas fa-bars"></i>
+                                <span class="sr-only">(current)</span>
                             </a>
-                            <ul class="dropdown-menu">
-                                <!-- User image -->
-                                <li class="user-header bg-light-blue">
-                                    <img src="{!! asset('assets/img/authors/avatar3.jpg') !!}" class="img-responsive img-circle" alt="User Image">
-                                    <p class="topprofiletext">Carlos Veizaga</p>
-                                </li>
-                                <!-- Menu Body -->
-                                <li>
-                                    <a href="#">
-                                        <i class="livicon" data-name="user" data-s="18"></i>
-                                        My Profile
-                                    </a>
-                                </li>
-                                <li role="presentation"></li>
-                                <li>
-                                    <a href="#">
-                                        <i class="livicon" data-name="gears" data-s="18"></i>
-                                        Account Settings
-                                    </a>
-                                </li>
-                                <!-- Menu Footer-->
-                                <li class="user-footer">
-                                    <div class="pull-left">
-                                        <a href="#">
-                                            <i class="livicon" data-name="lock" data-size="16" data-c="#555555" data-hc="#555555" data-loop="true"></i>
-                                            Lock
-                                        </a>
-                                    </div>
-                                    <div class="pull-right">
-                                        <a href="#">
-                                            <i class="livicon" data-name="sign-out" data-s="18"></i>
-                                            Logout
-                                        </a>
-                                    </div>
-                                </li>
-                            </ul>
                         </li>
                     </ul>
+                    <span class="navbar-text">
+                    Navbar text with an inline element
+                    </span>
                 </div>
             </nav>
         </header>
         
-        <aside class="aside">
-            sidebar
-        </aside>
-
-        <main class="main">
-            <div class="container">
-                @yield('content')
+        <div class="row">
+            <div class="col-2">
+                <aside class="aside">
+                    <div class="sidebar">
+                        <ul class="nav">
+                            <li class="nav-item active ">
+                                <a class="nav-link" href="">
+                                    <i class="fas fa-users"></i>
+                                    <p> Dashboard </p>
+                                </a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a class="nav-link" href="{{ route('admin.writers.index') }}">
+                                    <i class="fas fa-users"></i>
+                                    <p> Escritores </p>
+                                </a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a class="nav-link" href="{{ route('admin.redactors.index') }}">
+                                    <i class="fas fa-users"></i>
+                                    <p> Redactores </p>
+                                </a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a class="nav-link" href="{{ route('admin.areas.index') }}">
+                                    <i class="fas fa-users"></i>
+                                    <p> Areas </p>
+                                </a>
+                            </li>
+                        </ul>    
+                    </div>
+                </aside>
             </div>
-        </main>
+
+            <div class="col-10">
+                <main class="main">
+                    <div class="content">
+                        @yield('content')
+                    </div>
+                </main>
+            </div>
+        </div>
+
+
     </div>
 
     @yield('scripts')
