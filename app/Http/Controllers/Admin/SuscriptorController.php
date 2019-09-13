@@ -26,6 +26,12 @@ class SuscriptorController extends Controller
     {
         return view('admin.suscriptors.create');
     }
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
 
     public function store(SuscriptorRequest $request)
     {
@@ -42,7 +48,13 @@ class SuscriptorController extends Controller
     {
         return view('admin.suscriptors.edit', [ 'suscriptor' => $suscriptor ]);
     }
-
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function update(SuscriptorRequest $request, Suscriptor $suscriptor)
     {
         $input = $request->all();
