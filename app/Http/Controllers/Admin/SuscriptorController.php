@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\SuscriptorRequest;
 use App\Models\Suscriptor;
 use DB;
 
@@ -26,7 +27,7 @@ class SuscriptorController extends Controller
         return view('admin.suscriptors.create');
     }
 
-    public function store(Request $request)
+    public function store(SuscriptorRequest $request)
     {
       $input = $request->all();
 
@@ -42,7 +43,7 @@ class SuscriptorController extends Controller
         return view('admin.suscriptors.edit', [ 'suscriptor' => $suscriptor ]);
     }
 
-    public function update(Request $request, Suscriptor $suscriptor)
+    public function update(SuscriptorRequest $request, Suscriptor $suscriptor)
     {
         $input = $request->all();
         $input['password'] = bcrypt($request->password);
