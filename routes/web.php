@@ -15,7 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin'], function () {
+Route::group(['prefix' => 'admin','middleware' => ['role:administrator,create writers'], 'as' => 'admin.', 'namespace' => 'Admin'], function () {
     Route::get('writers', [
         'as' => 'writers.index',
         'uses' => 'WriterController@index',
@@ -43,7 +43,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin'], fu
     Route::delete('writers/{writer}', [
         'as' => 'writers.destroy',
         'uses' => 'WriterController@destroy',
-    ]);
+    ])->middleware('role:administrator,delete writers');
 
     Route::get('redactors', [
         'as' => 'redactors.index',
@@ -103,3 +103,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin'], fu
         'uses' => 'AreaController@destroy',
     ]);
 });
+
+Auth::routes();
+
+//Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/admin/home', 'HomeController@index')->name('home');

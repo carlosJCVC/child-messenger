@@ -7,9 +7,21 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\WriterRequest;
 use App\Models\Writer;
 use DB;
+use Illuminate\Support\Facades\Gate;
 
 class WriterController extends Controller
 {
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('role:administrator,delete writers')->except('logout');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -29,6 +41,10 @@ class WriterController extends Controller
      */
     public function create()
     {
+        if (!Gate::allows('course_list')) {
+            dd('test');
+        }
+
         return view('admin.writers.create');
     }
 
