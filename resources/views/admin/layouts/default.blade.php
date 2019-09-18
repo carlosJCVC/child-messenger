@@ -13,65 +13,16 @@
 <body>
 
     <div class="wrapper">
-        <header class="header">
-            <nav class="navbar navbar-expand-lg navbar-dark custom-navbar">
-                <a class="navbar-brand" href="#">MENSAJERO</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarText">
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="#">
-                                <i class="fas fa-bars"></i>
-                                <span class="sr-only">(current)</span>
-                            </a>
-                        </li>
-                    </ul>
-                    <span class="navbar-text">
-                    Navbar text with an inline element
-                    </span>
-                </div>
-            </nav>
-        </header>
+        @include('admin.layouts._navbar')
         
-        <div class="row">
-            <div class="col-2">
-                <aside class="aside">
-                    <div class="sidebar">
-                        <ul class="nav">
-                            <li class="nav-item active ">
-                                <a class="nav-link" href="">
-                                    <i class="fas fa-users"></i>
-                                    <p> Dashboard </p>
-                                </a>
-                            </li>
-                            <li class="sidebar-item">
-                                <a class="nav-link" href="{{ route('admin.writers.index') }}">
-                                    <i class="fas fa-users"></i>
-                                    <p> Escritores </p>
-                                </a>
-                            </li>
-                            <li class="sidebar-item">
-                                <a class="nav-link" href="{{ route('admin.redactors.index') }}">
-                                    <i class="fas fa-users"></i>
-                                    <p> Redactores </p>
-                                </a>
-                            </li>
-                            <li class="sidebar-item">
-                                <a class="nav-link" href="{{ route('admin.areas.index') }}">
-                                    <i class="fas fa-users"></i>
-                                    <p> Areas </p>
-                                </a>
-                            </li>
-                        </ul>    
-                    </div>
-                </aside>
+        <div class="custom_content">
+            <div>
+                @include('admin.layouts._sidebar')
             </div>
 
-            <div class="col-10">
+            <div>
                 <main class="main">
-                    <div class="content">
+                    <div class="container content">
                         @yield('content')
                     </div>
                 </main>
@@ -83,5 +34,10 @@
 
     @yield('scripts')
     <script src="{{ asset('/js/app.js') }}"></script>
+    <script>
+    function show() {
+        document.getElementById('sidebar').style.width = '300px';
+    }
+    </script>
 </body>
 </html>

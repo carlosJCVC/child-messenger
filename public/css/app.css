@@ -19380,7 +19380,6 @@ body.swal2-no-backdrop .swal2-shown.swal2-bottom-right {
 }
 
 .sidebar .nav {
-  margin-top: 15px;
   display: block;
 }
 
@@ -19435,6 +19434,38 @@ body.swal2-no-backdrop .swal2-shown.swal2-bottom-right {
 
 .content {
   margin-top: 50px;
+}
+
+.custom_content {
+  display: grid;
+  grid-template-columns: 15% 1fr;
+}
+
+@media (max-width: 970px) {
+  .custom_content {
+    display: grid;
+    grid-template-columns: 5% 1fr;
+  }
+
+  .nav > li p {
+    display: none;
+    margin: 0;
+    line-height: 30px;
+    font-size: 14px;
+    position: absolute;
+    display: block;
+    white-space: nowrap;
+  }
+
+  .nav > li i {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 24px;
+    float: left;
+    margin-right: 15px;
+    line-height: 30px;
+    width: 30px;
+    text-align: center;
+  }
 }
 
 *,
