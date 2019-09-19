@@ -1,43 +1,87 @@
-<header class="header">
-    <nav class="navbar navbar-expand-lg navbar-dark custom-navbar">
-        <a class="navbar-brand" href="#">MENSAJERO</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarText">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="javascript:void(0)" onclick="show()">
-                        <i class="fas fa-bars"></i>
-                        <span class="sr-only">(current)</span>
-                    </a>
-                </li>
-            </ul>
-            <div>
-                @if (!Auth::guest())
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                            {{ Auth::user()->name }} <span class="caret"></span>
-                        </a>
+<div class="header navbar">
+    <div class="header-container">
+        <ul class="nav-left">
+            <li>
+                <a id='sidebar-toggle' class="sidebar-toggle" href="javascript:void(0);">
+                    {{-- <i class="ti-menu"></i> --}}
+                    <i class="fas fa-bars"></i>
+                </a>
+            </li>
+        </ul>
+        <ul class="nav-right">
+            <li class="notifications dropdown">
+                <span class="counter bgc-red">3</span>
+                <a href="" class="dropdown-toggle no-after" data-toggle="dropdown">
+                    {{-- <i class="ti-bell"></i> --}}
+                    {{-- <i class="fas fa-bell"></i> --}}
+                    <i class="far fa-bell"></i>
+                </a>
 
-                        <ul class="dropdown-menu" role="menu">
-                            <li>
-                                <a href="{{ route('logout') }}"
-                                    onclick="event.preventDefault();
-                                                document.getElementById('logout-form').submit();">
-                                    Logout
-                                </a>
-
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                    {{ csrf_field() }}
-                                </form>
-                            </li>
-                        </ul>
+                <ul class="dropdown-menu">
+                    <li class="pX-20 pY-15 bdB">
+                        <i class="fas fa-bell"></i>
+                        {{-- <i class="ti-bell pR-10"></i> --}}
+                        <span class="fsz-sm fw-600 c-grey-900">Notifications</span>
                     </li>
-                @else
-                    <a href="/login" class="btn btn-outline-warning">LOGIN</a>
-                @endif
-            </div>
-        </div>
-    </nav>
-</header>
+                </ul>
+            </li>
+            <li class="notifications dropdown">
+                <span class="counter bgc-blue">3</span>
+                <a href="" class="dropdown-toggle no-after" data-toggle="dropdown">
+                    {{-- <i class="ti-email"></i> --}}
+                    <i class="far fa-envelope"></i>
+                </a>
+
+                <ul class="dropdown-menu">
+                    <li class="pX-20 pY-15 bdB">
+                    {{-- <i class="ti-email pR-10"></i> --}}
+                    <i class="fas fa-envelope"></i>
+                    <span class="fsz-sm fw-600 c-grey-900">Emails</span>
+                    </li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="" class="dropdown-toggle no-after peers fxw-nw ai-c lh-1" data-toggle="dropdown">
+                    <div class="peer mR-10">
+                        <img class="w-2r bdrs-50p" src="https://randomuser.me/api/portraits/men/10.jpg" alt="">
+                    </div>
+                    <div class="peer">
+                        <span class="fsz-sm c-grey-900">Carlos V</span>
+                    </div>
+                </a>
+                
+                <ul class="dropdown-menu fsz-sm">
+                    <li>
+                        <a href="" class="d-b td-n pY-5 bgcH-grey-100 c-grey-700">
+                            {{-- <i class="ti-settings mR-10"></i> --}}
+                            <i class="fas fa-cog"></i>
+                            <span>Setting</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="" class="d-b td-n pY-5 bgcH-grey-100 c-grey-700">
+                            {{-- <i class="ti-user mR-10"></i> --}}
+                            <i class="far fa-user"></i>
+                            <span>Profile</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="email.html" class="d-b td-n pY-5 bgcH-grey-100 c-grey-700">
+                            {{-- <i class="ti-email mR-10"></i> --}}
+                            <i class="far fa-envelope"></i>
+                            <span>Messages</span>
+                        </a>
+                    </li>
+                    <li role="separator" class="divider"></li>
+                    <li>
+                        <a href="" class="d-b td-n pY-5 bgcH-grey-100 c-grey-700">
+                            {{-- <i class="ti-power-off mR-10"></i> --}}
+                            <i class="fas fa-sign-out-alt"></i>
+                            <span>Logout</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>

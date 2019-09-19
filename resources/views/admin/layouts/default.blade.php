@@ -10,34 +10,26 @@
     @yield('styles')
     <link rel="stylesheet" href="{{ asset('/css/app.css') }}">
 </head>
-<body>
+<body class="app">
 
-    <div class="wrapper">
-        @include('admin.layouts._navbar')
-        
-        <div class="custom_content">
-            <div>
-                @include('admin.layouts._sidebar')
-            </div>
+    <div>
+        <!-- #Left Sidebar ==================== -->
+        @include('admin.layouts._sidebar')
 
-            <div>
-                <main class="main">
-                    <div class="container content">
-                        @yield('content')
-                    </div>
-                </main>
-            </div>
+        <div class="page-container">
+            <!-- ### $Topbar ### -->
+            @include('admin.layouts._navbar')
+
+            <!-- ### $App Screen Content ### -->
+            <main class='main-content bgc-grey-100'>
+                <div id='mainContent'>
+                    @yield('content')
+                <div>
+            </main>
         </div>
-
-
     </div>
 
     @yield('scripts')
     <script src="{{ asset('/js/app.js') }}"></script>
-    <script>
-    function show() {
-        document.getElementById('sidebar').style.width = '300px';
-    }
-    </script>
 </body>
 </html>

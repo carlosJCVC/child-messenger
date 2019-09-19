@@ -4,13 +4,19 @@
 @import "variables";
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
 // Font awesome
 @import '~@fortawesome/fontawesome-free/scss/brands';
 @import '~@fortawesome/fontawesome-free/scss/regular';
 @import '~@fortawesome/fontawesome-free/scss/solid';
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
+
+// Themify icons
+
+
 // Sweet alert2
 @import '~sweetalert2/src/sweetalert2.scss';
+
 // Custom Styles
-@import './navbar.scss';
-@import './custom.scss'
+@import './index.scss';
+//@import './custom.scss'

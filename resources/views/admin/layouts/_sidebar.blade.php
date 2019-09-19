@@ -1,30 +1,53 @@
-<aside id="sidebar" class="aside">
-    <div class="sidebar">
-        <ul class="nav">
-            <li class="nav-item active ">
-                <a class="nav-link" href="">
-                    <i class="fas fa-border-all"></i>
-                    <p> Dashboard </p>
+<div class="sidebar">
+    <div class="sidebar-inner">
+        <!-- ### $Sidebar Header ### -->
+        <div class="sidebar-logo">
+            <div class="peers ai-c fxw-nw">
+                <div class="peer peer-greed">
+                <a class="sidebar-link td-n" href="index.html">
+                    <div class="peers ai-c fxw-nw">
+                    <div class="peer">
+                        <div class="logo">
+                            <img src="{{ asset('assets/img/logo.png') }}" alt="">
+                        </div>
+                    </div>
+                    <div class="peer peer-greed">
+                        <h5 class="lh-1 mB-0 logo-text">Adminator</h5>
+                    </div>
+                    </div>
+                </a>
+                </div>
+                <div class="peer">
+                <div class="mobile-toggle sidebar-toggle">
+                    <a href="" class="td-n">
+                        <i class="fas fa-chevron-circle-left"></i>
+                        {{-- <i class="ti-arrow-circle-left"></i> --}}
+                    </a>
+                </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ### $Sidebar Menu ### -->
+        <ul class="sidebar-menu scrollable pos-r">
+            <li class="nav-item mT-30 actived">
+            <a class="sidebar-link" href="{{ route('admin.dashboard') }}">
+                    <span class="icon-holder">
+                        {{-- <i class="c-blue-500 ti-home"></i> --}}
+                        <i class="fas fa-home"></i>
+                    </span>
+                    <span class="title">Dashboard</span>
                 </a>
             </li>
-            <li class="sidebar-item">
-                <a class="nav-link" href="{{ route('admin.writers.index') }}">
-                    <i class="fas fa-edit"></i>
-                    <p> Escritores </p>
+            <li class="nav-item">
+            <a class='sidebar-link' href="{{ route('admin.writers.index') }}">
+                    <span class="icon-holder">
+                        {{-- <i class="c-brown-500 ti-email"></i> --}}
+                        <i class="fas fa-users"></i>
+                    </span>
+                    <span class="title">Users</span>
                 </a>
             </li>
-            <li class="sidebar-item">
-                <a class="nav-link" href="{{ route('admin.redactors.index') }}">
-                    <i class="fas fa-user-edit"></i>
-                    <p> Redactores </p>
-                </a>
-            </li>
-            <li class="sidebar-item">
-                <a class="nav-link" href="{{ route('admin.areas.index') }}">
-                    <i class="fab fa-asymmetrik"></i>
-                    <p> Areas </p>
-                </a>
-            </li>
-        </ul>    
+        </ul>
     </div>
-</aside>
+</div>

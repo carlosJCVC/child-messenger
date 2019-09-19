@@ -16,6 +16,12 @@ Route::get('/', function () {
 });
 
 Route::group(['prefix' => 'admin','middleware' => ['role:administrator,create writers'], 'as' => 'admin.', 'namespace' => 'Admin'], function () {
+    
+    Route::get('dashboard', [
+        'as' => 'dashboard',
+        'uses' => 'HomeController@index'
+    ]);
+
     Route::get('writers', [
         'as' => 'writers.index',
         'uses' => 'WriterController@index',
@@ -107,4 +113,3 @@ Route::group(['prefix' => 'admin','middleware' => ['role:administrator,create wr
 Auth::routes();
 
 //Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/admin/home', 'HomeController@index')->name('home');
