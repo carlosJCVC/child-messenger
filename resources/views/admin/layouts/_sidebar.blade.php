@@ -40,12 +40,20 @@
                 </a>
             </li>
             <li class="nav-item">
-            <a class='sidebar-link' href="{{ route('admin.writers.index') }}">
+                <a class='sidebar-link' href="{{ route('admin.writers.index') }}">
                     <span class="icon-holder">
                         {{-- <i class="c-brown-500 ti-email"></i> --}}
                         <i class="fas fa-users"></i>
                     </span>
                     <span class="title">Users</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class='sidebar-link' href="{{ route('admin.roles.index') }}">
+                    <span class="icon-holder">
+                        <i class="fas fa-users"></i>
+                    </span>
+                    <span class="title">Roles</span>
                 </a>
             </li>
         </ul>

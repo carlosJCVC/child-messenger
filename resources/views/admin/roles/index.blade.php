@@ -14,28 +14,30 @@
     <div class="row">
             <div class="col-md-12">
                 <div class="bgc-white bd bdrs-3 p-20">
-                    <h4 class="c-grey-900 mB-20 d-inline">Lista de escritores</h4>
-                    <a href="{{ route('admin.writers.create')}}" class="btn btn-outline-primary rounded-pill float-right">Crear Nuevo</a>
+                    <h4 class="c-grey-900 mB-20 d-inline">Lista de roles</h4>
+                    <a href="{{ route('admin.roles.create')}}" class="btn btn-outline-primary rounded-pill float-right">Crear Nuevo</a>
                     <table class="table table-hover table-sm mt-2">
                         <thead class="table-primary">
                             <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">Nombre</th>
-                                <th scope="col">Apellido</th>
-                                <th scope="col">E-mail</th>
+                                <th scope="col">Permisos</th>
                                 <th scope="col">Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($writers as $writer)
+                            @foreach ($roles as $role)
                                 <tr>
                                     <th scope="row">1</th>
-                                    <td>{{ $writer->name }}</td>
-                                    <td>{{ $writer->lastname }}</td>
-                                    <td>{{ $writer->email }}</td>
+                                    <td>{{ $role->name }}</td>
                                     <td>
-                                        <a href="{{ route('admin.writers.edit', $writer->id ) }}" class="btn btn-outline-success rounded-pill">Editar</a>
-                                        <form method="POST" style="display:inline-block" action="{{ route('admin.writers.destroy', $writer->id) }}">
+                                        @foreach ($role->permissions as $permission)
+                                            <span class="badge badge-info">{{ $permission->name }}</span>
+                                        @endforeach
+                                    </td>
+                                    <td>
+                                        <a href="{{ route('admin.roles.edit', $role->id ) }}" class="btn btn-outline-success rounded-pill">Editar</a>
+                                        <form method="POST" style="display:inline-block" action="{{ route('admin.roles.destroy', $role->id) }}">
                                             {{ csrf_field() }}
                                             {{ method_field('DELETE') }}
                                             
@@ -46,7 +48,7 @@
                             @endforeach
                         </tbody>
                     </table>
-                    @if ($writers->count() > 10)
+                    @if ($roles->count() > 10)
                         <nav aria-label="Page navigation example">
                             <ul class="pagination">
                                 <li class="page-item">

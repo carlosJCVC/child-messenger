@@ -74,11 +74,18 @@
                     </li>
                     <li role="separator" class="divider"></li>
                     <li>
-                        <a href="" class="d-b td-n pY-5 bgcH-grey-100 c-grey-700">
+                        <a href="{{ route('logout') }}" class="d-b td-n pY-5 bgcH-grey-100 c-grey-700"
+                            onclick="event.preventDefault();
+                            document.getElementById('logout-form').submit();">
+
                             {{-- <i class="ti-power-off mR-10"></i> --}}
                             <i class="fas fa-sign-out-alt"></i>
                             <span>Logout</span>
                         </a>
+
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            {{ csrf_field() }}
+                        </form>
                     </li>
                 </ul>
             </li>

@@ -14,13 +14,16 @@ class PermissionsTableSeeder extends Seeder
     {
         $permission = [
             [
+                'name' => 'backend access',
+            ],
+            [
+                'name' => 'list writers',
+            ],
+            [
                 'name' => 'create writers',
             ],
             [
-                'name' => 'read writers',
-            ],
-            [
-                'name' => 'update writers',
+                'name' => 'edit writers',
             ],
             [
                 'name' => 'delete writers',

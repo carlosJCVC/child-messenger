@@ -15,7 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::group(['prefix' => 'admin','middleware' => ['role:administrator,create writers'], 'as' => 'admin.', 'namespace' => 'Admin'], function () {
+Route::group(['prefix' => 'admin','middleware' => ['role:admin,backend access'], 'as' => 'admin.', 'namespace' => 'Admin'], function () {
     
     Route::get('dashboard', [
         'as' => 'dashboard',
@@ -107,6 +107,40 @@ Route::group(['prefix' => 'admin','middleware' => ['role:administrator,create wr
     Route::delete('areas/{area}', [
         'as' => 'areas.destroy',
         'uses' => 'AreaController@destroy',
+    ]);
+
+    Route::get('roles', [
+        'as' => 'roles.index',
+        'uses' => 'RoleController@index',
+    ]);
+    Route::get('roles/create', [
+        'as' => 'roles.create',
+        'uses' => 'RoleController@create',
+    ]);
+    Route::post('roles/store', [
+        'as' => 'roles.store',
+        'uses' => 'RoleController@store',
+    ]);
+    Route::get('roles/{role}/edit', [
+        'as' => 'roles.edit',
+        'uses' => 'RoleController@edit',
+    ]);
+    Route::put('roles/{role}', [
+        'as' => 'roles.update',
+        'uses' => 'RoleController@update',
+    ]);
+    Route::patch('roles/{role}', [
+        'as' => 'roles.update',
+        'uses' => 'RoleController@update',
+    ]);
+    Route::delete('roles/{role}', [
+        'as' => 'roles.destroy',
+        'uses' => 'RoleController@destroy',
+    ]);
+
+    Route::get('permissions', [
+        'as' => 'permissions.index',
+        'uses' => 'PermissionController@index',
     ]);
 });
 

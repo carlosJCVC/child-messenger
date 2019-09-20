@@ -4,7 +4,7 @@ use Illuminate\Database\Seeder;
 use App\User;
 use Carbon\Carbon;
 
-class RedactorsTableSeeder extends Seeder
+class UsersTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,6 +14,17 @@ class RedactorsTableSeeder extends Seeder
     public function run()
     {
         $users = [
+            [
+                'firstname' => 'Carlos',
+                'lastname' => 'Veizaga',
+                'username' => 'carlos',
+                'birthdate' => Carbon::now(),
+                'ci' => '0123456987AD',
+                'email' => 'carlos@gmail.com',
+                'phone' => '+59144444444',
+                'password' => bcrypt('carlos'),
+                'remember_token' => '',
+            ],
             [
                 'firstname' => 'Bart',
                 'lastname' => 'Simpson',
