@@ -49,13 +49,11 @@ class RedactorRequest extends FormRequest
                     'lastname' => 'required|max:100',
                     'username' => 'required|max:100',
                     'birthdate' => 'required|max:100',
-                    'email' => 'required|email|unique:users,email',
+                    'email' => 'required|email|unique:users,email,' . $this->user->id,
                     'ci' => 'required|between:3,32',
                     'phone' => 'required|numeric',
                     'password' => 'required|between:3,32',
                     'password_confirm' => 'required|same:password',
-
-                    // 'email' => 'required|unique:users,email,' . $this->user->id,
                 ];
             }
             default:

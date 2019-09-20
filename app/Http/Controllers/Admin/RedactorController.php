@@ -5,7 +5,8 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RedactorRequest;
-use App\Models\Redactor;
+use App\User;
+use Spatie\Permission\Models\Role;
 use DB;
 
 class RedactorController extends Controller
@@ -17,7 +18,8 @@ class RedactorController extends Controller
      */
     public function index()
     {
-        $redactors = DB::table('redactors')->get();
+        $role = Role::where('name', 'redactor')->first();
+        $redactors = $role->users;
 
         return view('admin.redactors.index', [ 'redactors' => $redactors ]);
     }
@@ -41,10 +43,12 @@ class RedactorController extends Controller
     {
         $input = $request->all();
 
-        $input['password'] = bcrypt($request->password);
-        
-        $writer = new Redactor($input);
-        $writer->save();
+        $user = new User($input);
+        $user->password = bcrypt($request->password);
+        $user->save();
+
+        $user->assignRole('redactor');
+        $user->givePermissionTo('backend access');
 
         return redirect(route('admin.redactors.index'))->with([ 'message' => 'Redactor creado exitosamente!', 'alert-type' => 'success' ]);
     }
@@ -66,9 +70,9 @@ class RedactorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Redactor $redactor)
+    public function edit(User $user)
     {
-        return view('admin.redactors.edit', [ 'redactor' => $redactor ]);
+        return view('admin.redactors.edit', [ 'redactor' => $user ]);
     }
 
     /**
@@ -78,12 +82,12 @@ class RedactorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(RedactorRequest $request, Redactor $redactor)
+    public function update(RedactorRequest $request, User $user)
     {
         $input = $request->all();
         $input['password'] = bcrypt($request->password);
 
-        $redactor->update($input);
+        $user->update($input);
 
         return redirect()->route('admin.redactors.index')->with(['message' => 'Curso actualizado exitosamente!', 'alert-type' => 'success']);
     }
@@ -94,9 +98,9 @@ class RedactorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Redactor $redactor)
+    public function destroy(User $user)
     {
-        $redactor->delete();
+        $user->delete();
 
         return redirect()->route('admin.redactors.index')->with(['message' => 'Redactor eliminado exitosamente!', 'alert-type' => 'success']);
     }

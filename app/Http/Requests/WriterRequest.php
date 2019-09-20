@@ -30,7 +30,7 @@ class WriterRequest extends FormRequest
             }
             case 'POST': {
                 return [
-                    'name' => 'required|max:100',
+                    'firstname' => 'required|max:100',
                     'lastname' => 'required|max:100',
                     'email' => 'required|email|unique:users,email',
                     'password' => 'required|between:3,32',
@@ -40,10 +40,10 @@ class WriterRequest extends FormRequest
             case 'PUT':
             case 'PATCH': {
                 return [
-                    'name' => 'required|max:100',
+                    'firstname' => 'required|max:100',
                     'lastname' => 'required|max:100',
                     // 'email' => 'required|unique:users,email,' . $this->user->id,
-                    'email' => 'required|email|unique:users,email',
+                    'email' => 'required|email|unique:users,email, ' . $this->user->id,
                     'password' => 'required|between:3,32',
                     // 'password_confirm' => 'between:3,32|same:password',
                 ];
@@ -60,9 +60,9 @@ class WriterRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required' => 'El campo :attribute es obligatorio.',
+            'firstname.required' => 'El campo :attribute es obligatorio.',
             'lastname.required' => 'El campo :attribute es obligatorio.',
-            'name.max' => 'El campo :attribute no debe ser mayor a 100 caracteres.',
+            'firstname.max' => 'El campo :attribute no debe ser mayor a 100 caracteres.',
             'lastname.max' => 'El campo :attribute no debe ser mayor a 100 caracteres.',
             'email.required' => 'El campo :attribute es obligatorio.',
             'email.unique' => 'El campo :attribute ya existe.',
@@ -74,7 +74,7 @@ class WriterRequest extends FormRequest
     public function attributes()
     {
         return [
-            'name' => 'Nombre',
+            'firstname' => 'Nombre',
             'lastname' => 'Apellido',
             'email' => 'E-mail',
             'password' => 'Password',

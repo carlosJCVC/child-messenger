@@ -21,7 +21,6 @@
                             <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">Nombre</th>
-                                <th scope="col">Apellido</th>
                                 <th scope="col">E-mail</th>
                                 <th scope="col">Acciones</th>
                             </tr>
@@ -30,8 +29,7 @@
                             @foreach ($writers as $writer)
                                 <tr>
                                     <th scope="row">1</th>
-                                    <td>{{ $writer->name }}</td>
-                                    <td>{{ $writer->lastname }}</td>
+                                    <td>{{ $writer->firstname }}</td>
                                     <td>{{ $writer->email }}</td>
                                     <td>
                                         <a href="{{ route('admin.writers.edit', $writer->id ) }}" class="btn btn-outline-success rounded-pill">Editar</a>

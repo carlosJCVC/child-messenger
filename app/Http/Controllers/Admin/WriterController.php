@@ -6,8 +6,10 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\WriterRequest;
 use App\Models\Writer;
+use App\User;
 use DB;
 use Illuminate\Support\Facades\Gate;
+use Spatie\Permission\Models\Role;
 
 class WriterController extends Controller
 {
@@ -19,7 +21,7 @@ class WriterController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('role:administrator,delete writers')->except('logout');
+        //$this->middleware('role:admin,delete writers')->except('logout');
     }
 
     /**
@@ -29,7 +31,8 @@ class WriterController extends Controller
      */
     public function index()
     {
-        $writers = DB::table('writers')->get();
+        $role = Role::where('name', 'writer')->first();
+        $writers = $role->users;
 
         return view('admin.writers.index', [ 'writers' => $writers]);
     }
@@ -41,7 +44,7 @@ class WriterController extends Controller
      */
     public function create()
     {
-        if (!Gate::allows('course_list')) {
+        if (!Gate::allows('list writers')) {
             dd('test');
         }
 
@@ -58,8 +61,11 @@ class WriterController extends Controller
     {
         $input = $request->all();
 
-        $writer = new Writer($input);
-        $writer->save();
+        $user = new User($input);
+        $user->password = bcrypt($request->password);
+        $user->save();
+        $user->assignRole('writer');
+        $user->givePermissionTo('backend access');
 
         return redirect(route('admin.writers.index'))->with([ 'message' => 'Curso creado exitosamente!', 'alert-type' => 'success' ]);
     }
@@ -81,9 +87,9 @@ class WriterController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Writer $writer)
+    public function edit(User $user)
     {
-        return view('admin.writers.edit', [ 'writer' => $writer ]);
+        return view('admin.writers.edit', [ 'writer' => $user ]);
     }
 
     /**
@@ -93,11 +99,11 @@ class WriterController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(WriterRequest $request, Writer $writer)
+    public function update(WriterRequest $request, User $user)
     {
         $input = $request->all();
 
-        $writer->update($input);
+        $user->update($input);
 
         return redirect()->route('admin.writers.index')->with(['message' => 'Curso actualizado exitosamente!', 'alert-type' => 'success']);
     }
@@ -108,9 +114,9 @@ class WriterController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Writer $writer)
+    public function destroy(User $user)
     {
-        $writer->delete();
+        $user->delete();
 
         return redirect()->route('admin.writers.index')->with(['message' => 'Curso eliminado exitosamente!', 'alert-type' => 'success']);
     }

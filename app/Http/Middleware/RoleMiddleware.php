@@ -22,7 +22,7 @@ class RoleMiddleware
             return redirect('login');
         }
 
-        if (! $request->user()->hasRole($role)) {
+        if (!$request->user()->hasRole(['admin', 'writer', 'redactor'])) {
             dd('no tienes el role');
             //abort(403);
         }

@@ -49,6 +49,14 @@
                 </a>
             </li>
             <li class="nav-item">
+                <a class='sidebar-link' href="{{ route('admin.redactors.index') }}">
+                    <span class="icon-holder">
+                        <i class="fas fa-users"></i>
+                    </span>
+                    <span class="title">Redactores</span>
+                </a>
+            </li>
+            <li class="nav-item">
                 <a class='sidebar-link' href="{{ route('admin.roles.index') }}">
                     <span class="icon-holder">
                         <i class="fas fa-users"></i>

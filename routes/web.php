@@ -34,23 +34,24 @@ Route::group(['prefix' => 'admin','middleware' => ['role:admin,backend access'],
         'as' => 'writers.store',
         'uses' => 'WriterController@store',
     ]);
-    Route::get('writers/{writer}/edit', [
+    Route::get('writers/{user}/edit', [
         'as' => 'writers.edit',
         'uses' => 'WriterController@edit',
     ]);
-    Route::put('writers/{writer}', [
+    Route::put('writers/{user}', [
         'as' => 'writers.update',
         'uses' => 'WriterController@update',
     ]);
-    Route::patch('writers/{writer}', [
+    Route::patch('writers/{user}', [
         'as' => 'writers.update',
         'uses' => 'WriterController@update',
     ]);
-    Route::delete('writers/{writer}', [
+    Route::delete('writers/{user}', [
         'as' => 'writers.destroy',
         'uses' => 'WriterController@destroy',
     ])->middleware('role:administrator,delete writers');
 
+    //-------------Redactores ----------//
     Route::get('redactors', [
         'as' => 'redactors.index',
         'uses' => 'RedactorController@index',
@@ -63,19 +64,19 @@ Route::group(['prefix' => 'admin','middleware' => ['role:admin,backend access'],
         'as' => 'redactors.store',
         'uses' => 'RedactorController@store',
     ]);
-    Route::get('redactors/{redactor}/edit', [
+    Route::get('redactors/{user}/edit', [
         'as' => 'redactors.edit',
         'uses' => 'RedactorController@edit',
     ]);
-    Route::put('redactors/{redactor}', [
+    Route::put('redactors/{user}', [
         'as' => 'redactors.update',
         'uses' => 'RedactorController@update',
     ]);
-    Route::patch('redactors/{redactor}', [
+    Route::patch('redactors/{user}', [
         'as' => 'redactors.update',
         'uses' => 'RedactorController@update',
     ]);
-    Route::delete('redactors/{redactor}', [
+    Route::delete('redactors/{user}', [
         'as' => 'redactors.destroy',
         'uses' => 'RedactorController@destroy',
     ]);
