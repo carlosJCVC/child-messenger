@@ -40,28 +40,44 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class='sidebar-link' href="{{ route('admin.writers.index') }}">
-                    <span class="icon-holder">
-                        {{-- <i class="c-brown-500 ti-email"></i> --}}
-                        <i class="fas fa-users"></i>
-                    </span>
-                    <span class="title">Users</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class='sidebar-link' href="{{ route('admin.redactors.index') }}">
+                <a class='sidebar-link' href="#">
                     <span class="icon-holder">
                         <i class="fas fa-users"></i>
                     </span>
-                    <span class="title">Redactores</span>
+                    <span class="title">Usuarios</span>
                 </a>
             </li>
             <li class="nav-item">
                 <a class='sidebar-link' href="{{ route('admin.roles.index') }}">
                     <span class="icon-holder">
-                        <i class="fas fa-users"></i>
+                        <i class="fas fa-user-lock"></i>
                     </span>
                     <span class="title">Roles</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class='sidebar-link' href="{{ route('admin.writers.index') }}">
+                    <span class="icon-holder">
+                        {{-- <i class="c-brown-500 ti-email"></i> --}}
+                        <i class="fas fa-edit"></i>
+                    </span>
+                    <span class="title">Escritores</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class='sidebar-link' href="{{ route('admin.redactors.index') }}">
+                    <span class="icon-holder">
+                        <i class="fas fa-user-tag"></i>
+                    </span>
+                    <span class="title">Redactores</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class='sidebar-link' href="{{ route('admin.areas.index') }}">
+                    <span class="icon-holder">
+                        <i class="fas fa-globe-americas"></i>
+                    </span>
+                    <span class="title">Areas</span>
                 </a>
             </li>
         </ul>

@@ -84804,3 +84804,18 @@ hr {
   stroke: #313435 !important;
 }
 
+.fas,
+.far {
+  color: rgba(252, 207, 207, 0.1);
+  text-shadow: 0.5px 0.5px 0.5px #ccc;
+  font-size: 1.2em;
+}
+
+.sidebar-link > .title {
+  color: white;
+}
+
+.title:hover {
+  color: rgba(163, 163, 245, 0.5);
+}
+

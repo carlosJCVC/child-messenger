@@ -1,31 +1,13 @@
-*,
-*::before,
-*::after {
-    box-sizing: border-box;
+.fas, .far {
+    color: hsla(0, 90%, 90%, 0.1);
+    text-shadow: 0.5px 0.5px 0.5px #ccc;
+    font-size: 1.2em;
 }
 
-.title {
-    display: grid;
-    grid-template-columns: 85% 15%;
-    padding-right: 25px;
-    border: 20%;
-    background-color: hsl(0, 0%, 40%);
-    border: 3px dotted hsl(10, 10%, 0%);
-    border-radius: 50px;
+.sidebar-link > .title {
+    color: hsla(0, 100%, 100%, 1);
 }
 
-.title h1 {
-    margin: 0;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    display: inline-block;
-    font-size: 2em;
-    color: hsl(90, 37%, 82%);
-    text-transform: uppercase;
-    font-weight: bold;
-    vertical-align: middle;
-    margin-left: 20px;
-}
-
-.table-style {
-    border-radius: 50px !important;
+.title:hover {
+    color: hsla(240, 80%, 80%, 0.5);
 }
