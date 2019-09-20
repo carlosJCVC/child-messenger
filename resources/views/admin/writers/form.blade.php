@@ -6,13 +6,13 @@
             <div class="input-group-prepend">
                 <span class="input-group-text">N</span>
             </div>
-            <input type="text" class="form-control" placeholder="Nombre" name="name" value="{{ isset($writer) ? $writer->name : '' }}" required>
+            <input type="text" class="form-control" placeholder="Nombre" name="firstname" value="{{ isset($writer) ? $writer->firstname : '' }}" required>
             <div class="valid-feedback">
                 Looks good!
             </div>
             
-            <div class="invalid-feedback {{ $errors->has('name')? 'd-block' : '' }}">
-                {{ $errors->has('name')? $errors->first('name') : 'El campo de Nombre es requerido'  }}
+            <div class="invalid-feedback {{ $errors->has('firstname')? 'd-block' : '' }}">
+                {{ $errors->has('firstname')? $errors->first('firstname') : 'El campo de Nombre es requerido'  }}
             </div>
         </div>
     </div>

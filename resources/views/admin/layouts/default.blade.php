@@ -10,13 +10,23 @@
     @yield('styles')
     <link rel="stylesheet" href="{{ asset('/css/app.css') }}">
 </head>
-<body>
-    @section('sidebar')
-        This is the master sidebar.
-    @show
+<body class="app">
 
-    <div class="container">
-        @yield('content')
+    <div>
+        <!-- #Left Sidebar ==================== -->
+        @include('admin.layouts._sidebar')
+
+        <div class="page-container">
+            <!-- ### $Topbar ### -->
+            @include('admin.layouts._navbar')
+
+            <!-- ### $App Screen Content ### -->
+            <main class='main-content bgc-grey-100'>
+                <div id='mainContent'>
+                    @yield('content')
+                <div>
+            </main>
+        </div>
     </div>
 
     @yield('scripts')

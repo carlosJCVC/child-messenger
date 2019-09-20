@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Models\Redactor;
+use App\User;
 use Carbon\Carbon;
 
 class RedactorsTableSeeder extends Seeder
@@ -13,7 +13,7 @@ class RedactorsTableSeeder extends Seeder
      */
     public function run()
     {
-        $redactors = [
+        $users = [
             [
                 'firstname' => 'Bart',
                 'lastname' => 'Simpson',
@@ -60,8 +60,8 @@ class RedactorsTableSeeder extends Seeder
             ],
         ];
 
-        foreach ($redactors as $redactor) {
-            Redactor::create($redactor);
+        foreach ($users as $user) {
+            User::create($user);
             //$user->assignRole(['Teacher']);
         }
     }

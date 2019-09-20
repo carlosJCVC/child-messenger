@@ -4,9 +4,13 @@ const delete_action = (e) => {
     alert();
 };
 
-$('#datepicker').datepicker({
-    startDate: "today",
-    todayBtn: true,
-    clearBtn: true,
-    language: "es"
+$(document).ready(function() {
+    $('.js-example-basic-multiple').select2(
+    //     {
+    //     ajax: {
+    //         url: "http://localhost:8000/admin/permissions",
+    //         cache: false
+    //     }
+    // }
+    );
 });

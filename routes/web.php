@@ -15,7 +15,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin'], function () {
+Route::group(['prefix' => 'admin','middleware' => ['role:admin,backend access'], 'as' => 'admin.', 'namespace' => 'Admin'], function () {
+    
+    Route::get('dashboard', [
+        'as' => 'dashboard',
+        'uses' => 'HomeController@index'
+    ]);
+
     Route::get('writers', [
         'as' => 'writers.index',
         'uses' => 'WriterController@index',
@@ -28,23 +34,24 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin'], fu
         'as' => 'writers.store',
         'uses' => 'WriterController@store',
     ]);
-    Route::get('writers/{writer}/edit', [
+    Route::get('writers/{user}/edit', [
         'as' => 'writers.edit',
         'uses' => 'WriterController@edit',
     ]);
-    Route::put('writers/{writer}', [
+    Route::put('writers/{user}', [
         'as' => 'writers.update',
         'uses' => 'WriterController@update',
     ]);
-    Route::patch('writers/{writer}', [
+    Route::patch('writers/{user}', [
         'as' => 'writers.update',
         'uses' => 'WriterController@update',
     ]);
-    Route::delete('writers/{writer}', [
+    Route::delete('writers/{user}', [
         'as' => 'writers.destroy',
         'uses' => 'WriterController@destroy',
-    ]);
+    ])->middleware('role:administrator,delete writers');
 
+    //-------------Redactores ----------//
     Route::get('redactors', [
         'as' => 'redactors.index',
         'uses' => 'RedactorController@index',
@@ -57,19 +64,19 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin'], fu
         'as' => 'redactors.store',
         'uses' => 'RedactorController@store',
     ]);
-    Route::get('redactors/{redactor}/edit', [
+    Route::get('redactors/{user}/edit', [
         'as' => 'redactors.edit',
         'uses' => 'RedactorController@edit',
     ]);
-    Route::put('redactors/{redactor}', [
+    Route::put('redactors/{user}', [
         'as' => 'redactors.update',
         'uses' => 'RedactorController@update',
     ]);
-    Route::patch('redactors/{redactor}', [
+    Route::patch('redactors/{user}', [
         'as' => 'redactors.update',
         'uses' => 'RedactorController@update',
     ]);
-    Route::delete('redactors/{redactor}', [
+    Route::delete('redactors/{user}', [
         'as' => 'redactors.destroy',
         'uses' => 'RedactorController@destroy',
     ]);
@@ -102,4 +109,42 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin'], fu
         'as' => 'areas.destroy',
         'uses' => 'AreaController@destroy',
     ]);
+
+    Route::get('roles', [
+        'as' => 'roles.index',
+        'uses' => 'RoleController@index',
+    ]);
+    Route::get('roles/create', [
+        'as' => 'roles.create',
+        'uses' => 'RoleController@create',
+    ]);
+    Route::post('roles/store', [
+        'as' => 'roles.store',
+        'uses' => 'RoleController@store',
+    ]);
+    Route::get('roles/{role}/edit', [
+        'as' => 'roles.edit',
+        'uses' => 'RoleController@edit',
+    ]);
+    Route::put('roles/{role}', [
+        'as' => 'roles.update',
+        'uses' => 'RoleController@update',
+    ]);
+    Route::patch('roles/{role}', [
+        'as' => 'roles.update',
+        'uses' => 'RoleController@update',
+    ]);
+    Route::delete('roles/{role}', [
+        'as' => 'roles.destroy',
+        'uses' => 'RoleController@destroy',
+    ]);
+
+    Route::get('permissions', [
+        'as' => 'permissions.index',
+        'uses' => 'PermissionController@index',
+    ]);
 });
+
+Auth::routes();
+
+//Route::get('/home', 'HomeController@index')->name('home');
