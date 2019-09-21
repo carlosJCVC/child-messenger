@@ -11559,8 +11559,9 @@ module.exports = __webpack_require__(45);
 
 /***/ }),
 /* 11 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
+"use strict";
 
 /**
  * First we will load all of this project's JavaScript dependencies which
@@ -11586,10 +11587,12 @@ Vue.component('example', __webpack_require__(41));
 
 /***/ }),
 /* 12 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
+"use strict";
 
 window._ = __webpack_require__(13);
+window.Swal = __webpack_require__(18);
 
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
@@ -35848,24 +35851,31 @@ Popper.Defaults = Defaults;
 
 /***/ }),
 /* 17 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var Swal = __webpack_require__(18);
-
-var delete_action = function delete_action(e) {
-    alert();
-};
+/***/ (function(module, exports) {
 
 $(document).ready(function () {
     $('.js-example-basic-multiple').select2();
-}
-//     {
-//     ajax: {
-//         url: "http://localhost:8000/admin/permissions",
-//         cache: false
-//     }
-// }
-);
+});
+
+module.exports = delete_action = function delete_action(e) {
+    e.preventDefault();
+
+    Swal.fire({
+        title: 'are you sure!',
+        text: 'Do you want to detele this register ?',
+        type: 'info',
+        showCancelButton: true,
+        confirmButtonColor: 'hsl(120, 50%, 50%, 1)',
+        cancelButtonColor: 'hsl(0, 50%, 50%, 1)',
+        confirmButtonText: 'Yes !! '
+    }).then(function (_ref) {
+        var value = _ref.value;
+
+        if (value) {
+            e.target.form.submit();
+        }
+    });
+};
 
 /***/ }),
 /* 18 */
