@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 
 class PermissionsTableSeeder extends Seeder
@@ -12,26 +13,37 @@ class PermissionsTableSeeder extends Seeder
      */
     public function run()
     {
-        $permission = [
-            [
-                'name' => 'backend access',
-            ],
-            [
-                'name' => 'list writers',
-            ],
-            [
-                'name' => 'create writers',
-            ],
-            [
-                'name' => 'edit writers',
-            ],
-            [
-                'name' => 'delete writers',
-            ],
+        $permissions = [
+
+            [ 'name' => 'list writers' ],
+            [ 'name' => 'create writers' ],
+            [ 'name' => 'edit writers' ],
+            [ 'name' => 'delete writers' ],
+
+            [ 'name' => 'list redactors' ],
+            [ 'name' => 'create redactors' ],
+            [ 'name' => 'edit redactors' ],
+            [ 'name' => 'delete redactors' ],
+
+            [ 'name' => 'list suscriptors' ],
+            [ 'name' => 'create suscriptors' ],
+            [ 'name' => 'edit suscriptors' ],
+            [ 'name' => 'delete suscriptors' ],
+
+            [ 'name' => 'list areas' ],
+            [ 'name' => 'create areas' ],
+            [ 'name' => 'edit areas' ],
+            [ 'name' => 'delete areas' ],
         ];
 
-        foreach ($permission as $permission) {
+        
+        $admin = Role::find(1);
+        //$writer = Role::where('name', 'writer')->first();
+        //$redactor = Role::where('name', 'redactor')->first();
+        
+        foreach ($permissions as $permission) {
             Permission::create($permission);
+            $admin->givePermissionTo($permission);
         }
     }
 }

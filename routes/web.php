@@ -16,7 +16,7 @@ Route::get('/', function () {
 });
 
 Route::group(['prefix' => 'admin','middleware' => ['role:admin,backend access'], 'as' => 'admin.', 'namespace' => 'Admin'], function () {
-    
+
     Route::get('dashboard', [
         'as' => 'dashboard',
         'uses' => 'HomeController@index'

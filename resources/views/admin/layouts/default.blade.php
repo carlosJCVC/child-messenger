@@ -9,6 +9,7 @@
     
     @yield('styles')
     <link rel="stylesheet" href="{{ asset('/css/app.css') }}">
+    <script src="{{ asset('/js/app.js') }}"></script>
 </head>
 <body class="app">
 
@@ -22,6 +23,14 @@
 
             <!-- ### $App Screen Content ### -->
             <main class='main-content bgc-grey-100'>
+                @if (Session::has('message'))
+                    <script>
+                        var type = "{!! Session::get('alert-type', 'info') !!}"
+                        var message = "{{ Session::get('message') }}"
+                        notification(type, message)
+                    </script>
+                @endif
+                
                 <div id='mainContent'>
                     @yield('content')
                 <div>
@@ -30,6 +39,5 @@
     </div>
 
     @yield('scripts')
-    <script src="{{ asset('/js/app.js') }}"></script>
 </body>
 </html>

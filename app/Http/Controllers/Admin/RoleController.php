@@ -19,6 +19,10 @@ class RoleController extends Controller
      */
     public function index()
     {
+        if (!Gate::allows('list roles')) {
+            return redirect(route('admin.dashboard'))->with([ 'message' => 'No tiene permisos para esta accion!', 'alert-type' => 'error' ]);
+        }
+
         $roles = Role::all();
 
         return view('admin.roles.index', [ 'roles' => $roles]);

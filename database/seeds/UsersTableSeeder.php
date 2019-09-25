@@ -3,6 +3,7 @@
 use Illuminate\Database\Seeder;
 use App\User;
 use Carbon\Carbon;
+use Spatie\Permission\Models\Permission;
 
 class UsersTableSeeder extends Seeder
 {
@@ -17,10 +18,21 @@ class UsersTableSeeder extends Seeder
             [
                 'firstname' => 'Carlos',
                 'lastname' => 'Veizaga',
-                'username' => 'carlos',
+                'username' => 'Admin',
                 'birthdate' => Carbon::now(),
                 'ci' => '0123456987AD',
-                'email' => 'carlos@gmail.com',
+                'email' => 'admin@admin.com',
+                'phone' => '+59144444444',
+                'password' => bcrypt('admin'),
+                'remember_token' => '',
+            ],
+            [
+                'firstname' => 'Juan Carlos',
+                'lastname' => 'Cabrera',
+                'username' => 'juan',
+                'birthdate' => Carbon::now(),
+                'ci' => '0123456987AD',
+                'email' => 'juancarlos@gmail.com',
                 'phone' => '+59144444444',
                 'password' => bcrypt('carlos'),
                 'remember_token' => '',
@@ -71,9 +83,21 @@ class UsersTableSeeder extends Seeder
             ],
         ];
 
-        foreach ($users as $user) {
-            User::create($user);
-            //$user->assignRole(['Teacher']);
+        Permission::create([ 'name' => 'backend access' ]);
+        
+        foreach ($users as $item) {
+            $user = User::create($item);
+
+            $user->givePermissionTo('backend access');
+
+            if ($user->username == 'Admin') {
+                $user->assignRole(['admin']);
+            } elseif ($user->username == 'juan') {
+                $user->assignRole(['redactor']);
+            } else {
+                $user->assignRole(['writer']);
+            }
+
         }
     }
 }
