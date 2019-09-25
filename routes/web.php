@@ -21,7 +21,37 @@ Route::group(['prefix' => 'admin','middleware' => ['role:admin,backend access'],
         'as' => 'dashboard',
         'uses' => 'HomeController@index'
     ]);
+    //------------ USERS --------------//
+    Route::get('users', [
+        'as' => 'users.index',
+        'uses' => 'UserController@index',
+    ]);
+    Route::get('users/create', [
+        'as' => 'users.create',
+        'uses' => 'UserController@create',
+    ]);
+    Route::post('users/store', [
+        'as' => 'users.store',
+        'uses' => 'UserController@store',
+    ]);
+    Route::get('users/{user}/edit', [
+        'as' => 'users.edit',
+        'uses' => 'UserController@edit',
+    ]);
+    Route::put('users/{user}', [
+        'as' => 'users.update',
+        'uses' => 'UserController@update',
+    ]);
+    Route::patch('users/{user}', [
+        'as' => 'users.update',
+        'uses' => 'UserController@update',
+    ]);
+    Route::delete('users/{user}', [
+        'as' => 'users.destroy',
+        'uses' => 'UserController@destroy',
+    ])->middleware('role:administrator,delete writers');
 
+    //----------- WRITERS ------------//
     Route::get('writers', [
         'as' => 'writers.index',
         'uses' => 'WriterController@index',
@@ -81,6 +111,37 @@ Route::group(['prefix' => 'admin','middleware' => ['role:admin,backend access'],
         'uses' => 'RedactorController@destroy',
     ]);
 
+    //----------------SUSCRIPTORES -----------------//
+    Route::get('suscriptors', [
+		'as' => 'suscriptors.index',
+		'uses' => 'SuscriptorController@index'
+	]);
+	Route::get('suscriptors/create', [
+        'as' => 'suscriptors.create',
+        'uses' => 'SuscriptorController@create',
+    ]);
+    Route::post('suscriptors/store', [
+        'as' => 'suscriptors.store',
+        'uses' => 'SuscriptorController@store',
+    ]);
+    Route::get('suscriptors/{user}/edit', [
+        'as' => 'suscriptors.edit',
+        'uses' => 'SuscriptorController@edit',
+    ]);
+    Route::put('suscriptors/{user}', [
+        'as' => 'suscriptors.update',
+        'uses' => 'SuscriptorController@update',
+    ]);
+    Route::patch('suscriptors/{user}', [
+        'as' => 'suscriptors.update',
+        'uses' => 'SuscriptorController@update',
+    ]);
+    Route::delete('suscriptors/{user}', [
+        'as' => 'suscriptors.destroy',
+        'uses' => 'SuscriptorController@destroy',
+    ]);
+
+    //-------------- AREAS ------------------//
     Route::get('areas', [
         'as' => 'areas.index',
         'uses' => 'AreaController@index',
@@ -146,5 +207,3 @@ Route::group(['prefix' => 'admin','middleware' => ['role:admin,backend access'],
 });
 
 Auth::routes();
-
-//Route::get('/home', 'HomeController@index')->name('home');

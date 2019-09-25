@@ -18,6 +18,7 @@ toastr.options = {
 window.notification = (type, message) => {
     switch(type){
         case 'info':
+            //toastr["success"]("My name is Inigo Montoya. You killed my father. Prepare to die!", "hi carlos")
             toastr.info(message);
             break;
 

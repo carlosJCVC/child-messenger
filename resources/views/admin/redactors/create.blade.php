@@ -17,6 +17,7 @@
         <div class="card-body">
             <form class="form-validation" method="POST" action="{{ route('admin.redactors.store') }}" novalidate>
                 {{ csrf_field() }}
+                
                 @include('admin.redactors.form')
 
                 <div class="text-center">

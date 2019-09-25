@@ -23,6 +23,7 @@
 
             <!-- ### $App Screen Content ### -->
             <main class='main-content bgc-grey-100'>
+
                 @if (Session::has('message'))
                     <script>
                         var type = "{!! Session::get('alert-type', 'info') !!}"
@@ -34,6 +35,7 @@
                 <div id='mainContent'>
                     @yield('content')
                 <div>
+
             </main>
         </div>
     </div>

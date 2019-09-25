@@ -6,7 +6,7 @@
             <div class="input-group-prepend">
                 <span class="input-group-text">N</span>
             </div>
-            <input type="text" class="form-control" placeholder="Nombre" name="firstname" value="{{ isset($redactor) ? $redactor->firstname : '' }}" required>
+            <input type="text" class="form-control" placeholder="Nombre" name="firstname" value="{{ isset($redactor) ? $redactor->firstname : old('firstname') }}" required>
             <div class="valid-feedback">
                 Looks good!
             </div>
@@ -23,7 +23,7 @@
             <div class="input-group-prepend">
                 <span class="input-group-text">L</span>
             </div>
-            <input type="text" class="form-control" placeholder="Apellido" name="lastname" value="{{ isset($redactor) ? $redactor->lastname : '' }}" required>
+            <input type="text" class="form-control" placeholder="Apellido" name="lastname" value="{{ isset($redactor) ? $redactor->lastname : old('lastname') }}" required>
             <div class="valid-feedback">
                 Looks good!
             </div>
@@ -41,7 +41,7 @@
             <div class="input-group-prepend">
                 <span class="input-group-text">U</span>
             </div>
-            <input type="text" class="form-control" placeholder="Nombre de usuario" name="username" value="{{ isset($redactor) ? $redactor->username : '' }}" required>
+            <input type="text" class="form-control" placeholder="Nombre de usuario" name="username" value="{{ isset($redactor) ? $redactor->username : old('username') }}" required>
             <div class="valid-feedback">
                 Looks good!
             </div>
@@ -58,7 +58,7 @@
             <div class="input-group-prepend">
                 <span class="input-group-text">D</span>
             </div>
-            <input type="date" class="form-control" id="datepicker" name="birthdate" value="{{ isset($redactor) ? $redactor->birthdate : '' }}" required>
+            <input type="date" class="form-control" id="datepicker" name="birthdate" value="{{ isset($redactor) ? $redactor->birthdate : old('birthdate') }}" required>
             <div class="valid-feedback">
                 Looks good!
             </div>
@@ -76,7 +76,7 @@
             <div class="input-group-prepend">
                 <span class="input-group-text">@</span>
             </div>
-            <input type="email" class="form-control" placeholder="E-mail" name="email" value="{{ isset($redactor) ? $redactor->email : '' }}" required>
+            <input type="email" class="form-control" placeholder="E-mail" name="email" value="{{ isset($redactor) ? $redactor->email : old('email') }}" required>
             <div class="valid-feedback">
                 Looks good!
             </div>
@@ -92,7 +92,7 @@
             <div class="input-group-prepend">
                 <span class="input-group-text">CI</span>
             </div>
-            <input type="text" class="form-control" placeholder="C.I." name="ci" value="{{ isset($redactor) ? $redactor->ci : '' }}" required>
+            <input type="text" class="form-control" placeholder="C.I." name="ci" value="{{ isset($redactor) ? $redactor->ci : old('ci') }}" required>
             <div class="valid-feedback">
                 Looks good!
             </div>
@@ -108,7 +108,7 @@
             <div class="input-group-prepend">
                 <span class="input-group-text">P</span>
             </div>
-            <input type="text" class="form-control" placeholder="Telefono" name="phone" value="{{ isset($redactor) ? $redactor->phone : '' }}" required>
+            <input type="text" class="form-control" placeholder="Telefono" name="phone" value="{{ isset($redactor) ? $redactor->phone : old('phone') }}" required>
             <div class="valid-feedback">
                 Looks good!
             </div>

@@ -4,12 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\RedactorRequest;
-use App\User;
-use Spatie\Permission\Models\Role;
 use DB;
+use App\User;
 
-class RedactorController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,10 +16,10 @@ class RedactorController extends Controller
      */
     public function index()
     {
-        $role = Role::where('name', 'redactor')->first();
-        $redactors = $role->users;
+        // $users = DB::table('users')->get();
+        $users = User::all();
 
-        return view('admin.redactors.index', [ 'redactors' => $redactors ]);
+        return view('admin.users.index', [ 'users' => $users ]);
     }
 
     /**
@@ -31,26 +29,27 @@ class RedactorController extends Controller
      */
     public function create()
     {
-        return view('admin.redactors.create');
+        return view('admin.users.create');
     }
 
     /**
      * Store a newly created resource in storage.
+     *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(RedactorRequest $request)
+    public function store(UserRequest $request)
     {
         $input = $request->all();
 
         $user = new User($input);
         $user->password = bcrypt($request->password);
         $user->save();
-
-        $user->assignRole('redactor');
-        $user->givePermissionTo('backend access');
-
-        return redirect(route('admin.redactors.index'))->with([ 'message' => 'Redactor creado exitosamente!', 'alert-type' => 'success' ]);
+  
+        //$user->assignRole('suscriptor');
+        //$user->givePermissionTo('backend access');
+  
+        return redirect(route('admin.users.index'))->with([ 'message' => 'Usuario creado exitosamente!', 'alert-type' => 'success' ]);
     }
 
     /**
@@ -72,7 +71,7 @@ class RedactorController extends Controller
      */
     public function edit(User $user)
     {
-        return view('admin.redactors.edit', [ 'redactor' => $user ]);
+        return view('admin.users.edit', [ 'user' => $user ]);
     }
 
     /**
@@ -82,14 +81,13 @@ class RedactorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(RedactorRequest $request, User $user)
+    public function update(UserRequest $request, User $user)
     {
         $input = $request->all();
         $input['password'] = bcrypt($request->password);
-
         $user->update($input);
 
-        return redirect()->route('admin.redactors.index')->with(['message' => 'Redactor actualizado exitosamente!', 'alert-type' => 'success']);
+        return redirect()->route('admin.users.index')->with(['message' => 'Usuario actualizado exitosamente!', 'alert-type' => 'success']);
     }
 
     /**
@@ -100,8 +98,10 @@ class RedactorController extends Controller
      */
     public function destroy(User $user)
     {
-        $user->delete();
+        if ($user->exists()) {
+            $user->delete();
+        }
 
-        return redirect()->route('admin.redactors.index')->with(['message' => 'Redactor eliminado exitosamente!', 'alert-type' => 'warning']);
+        return redirect(route('admin.users.index'))->with([ 'message' => 'Usuario eliminado exitosamente!', 'alert-type' => 'warning' ]);
     }
 }

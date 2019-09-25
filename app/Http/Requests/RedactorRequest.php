@@ -52,7 +52,7 @@ class RedactorRequest extends FormRequest
                     'email' => 'required|email|unique:users,email,' . $this->user->id,
                     'ci' => 'required|between:3,32',
                     'phone' => 'required|numeric',
-                    'password' => 'required|between:3,32',
+                    'password' => 'required|between:6,32',
                     'password_confirm' => 'required|same:password',
                 ];
             }
@@ -75,6 +75,7 @@ class RedactorRequest extends FormRequest
             'email.required' => 'El campo :attribute es obligatorio.',
             'ci.required' => 'El campo :attribute es obligatorio.',
             'phone.required' => 'El campo :attribute es obligatorio.',
+            'phone.numeric' => 'El campo :attribute solo puede contener numeros.',
             
             'firstname.max' => 'El campo :attribute no debe ser mayor a 100 caracteres.',
             'lastname.max' => 'El campo :attribute no debe ser mayor a 100 caracteres.',
@@ -84,7 +85,7 @@ class RedactorRequest extends FormRequest
             'email.unique' => 'El campo :attribute ya existe.',
             
             'password.required' => 'El campo :attribute es obligatorio.',
-            'password.between' => 'El campo :attribute debe tener 3 a 32 caracteres.',
+            'password.between' => 'El campo :attribute debe tener 6 a 32 caracteres.',
             'password_confirm.same' => 'Este campo no coincide con el Password.',
         ];
     }

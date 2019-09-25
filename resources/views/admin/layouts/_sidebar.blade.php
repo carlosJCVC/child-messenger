@@ -40,7 +40,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class='sidebar-link' href="#">
+                <a class='sidebar-link' href="{{ route('admin.users.index') }}">
                     <span class="icon-holder">
                         <i class="fas fa-users"></i>
                     </span>
@@ -70,6 +70,14 @@
                         <i class="fas fa-user-tag"></i>
                     </span>
                     <span class="title">Redactores</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class='sidebar-link' href="{{ route('admin.suscriptors.index') }}">
+                    <span class="icon-holder">
+                        <i class="fas fa-user-tag"></i>
+                    </span>
+                    <span class="title">Suscriptores</span>
                 </a>
             </li>
             <li class="nav-item">
