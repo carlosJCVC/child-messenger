@@ -141,6 +141,20 @@ Route::group(['prefix' => 'admin','middleware' => ['role:admin,backend access'],
         'uses' => 'SuscriptorController@destroy',
     ]);
 
+    //----------- LETTERS ------------//
+    Route::get('letters', [
+        'as' => 'letters.index',
+        'uses' => 'LetterController@index',
+    ]);
+    Route::get('letters/create', [
+        'as' => 'letters.create',
+        'uses' => 'LetterController@create',
+    ]);
+    Route::post('letters/store', [
+        'as' => 'letters.store',
+        'uses' => 'LetterController@store',
+    ]);
+
     //-------------- AREAS ------------------//
     Route::get('areas', [
         'as' => 'areas.index',
@@ -204,6 +218,8 @@ Route::group(['prefix' => 'admin','middleware' => ['role:admin,backend access'],
         'as' => 'permissions.index',
         'uses' => 'PermissionController@index',
     ]);
+
+
 });
 
 Auth::routes();

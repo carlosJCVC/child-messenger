@@ -1,3 +1,4 @@
+
 toastr.options = {
     "closeButton": true,
     "debug": false,
@@ -38,7 +39,53 @@ window.notification = (type, message) => {
 
 $(document).ready(function() {
     $('.js-example-basic-multiple').select2();
+
+    $('.sidebar-toggle').on('click', e => {
+        $('.app').toggleClass('is-collapsed');
+        e.preventDefault();
+    });
+    
+    $('.sidebar .sidebar-menu li a').on('click', function () {
+        const $this = $(this);
+        
+        if ($this.parent().hasClass('open')) {
+            $this
+                .parent()
+                .children('.dropdown-menu')
+                .slideUp(200, () => {
+                    $this.parent().removeClass('open');
+                });
+        } else {
+            $this
+                .parent()
+                .parent()
+                .children('li.open')
+                .children('.dropdown-menu')
+                .slideUp(200);
+    
+          $this
+                .parent()
+                .parent()
+                .children('li.open')
+                .children('a')
+                .removeClass('open');
+    
+          $this
+                .parent()
+                .parent()
+                .children('li.open')
+                .removeClass('open');
+    
+          $this
+                .parent()
+                .children('.dropdown-menu')
+                .slideDown(200, () => {
+                    $this.parent().addClass('open');
+                });
+        }
+    })
 });
+
 
 module.exports = delete_action = (e) => {
     e.preventDefault();

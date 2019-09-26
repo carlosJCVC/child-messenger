@@ -4,7 +4,7 @@
         <div class="sidebar-logo">
             <div class="peers ai-c fxw-nw">
                 <div class="peer peer-greed">
-                <a class="sidebar-link td-n" href="index.html">
+                <a class="sidebar-link td-n" href="{{ route('admin.dashboard') }}">
                     <div class="peers ai-c fxw-nw">
                     <div class="peer">
                         <div class="logo">
@@ -12,7 +12,7 @@
                         </div>
                     </div>
                     <div class="peer peer-greed">
-                        <h5 class="lh-1 mB-0 logo-text">Adminator</h5>
+                        <h5 class="lh-1 mB-0 logo-text c-white">Adminator</h5>
                     </div>
                     </div>
                 </a>
@@ -36,7 +36,7 @@
                         {{-- <i class="c-blue-500 ti-home"></i> --}}
                         <i class="fas fa-home"></i>
                     </span>
-                    <span class="title">Dashboard</span>
+                    <span class="title c-white">Dashboard</span>
                 </a>
             </li>
             <li class="nav-item">
@@ -44,7 +44,7 @@
                     <span class="icon-holder">
                         <i class="fas fa-users"></i>
                     </span>
-                    <span class="title">Usuarios</span>
+                    <span class="title c-white">Usuarios</span>
                 </a>
             </li>
             <li class="nav-item">
@@ -52,24 +52,76 @@
                     <span class="icon-holder">
                         <i class="fas fa-user-lock"></i>
                     </span>
-                    <span class="title">Roles</span>
+                    <span class="title c-white">Roles</span>
                 </a>
             </li>
-            <li class="nav-item">
-                <a class='sidebar-link' href="{{ route('admin.writers.index') }}">
+            <li class="nav-item dropdown">
+                <a class="dropdown-toggle" href="javascript:void(0);">
                     <span class="icon-holder">
-                        {{-- <i class="c-brown-500 ti-email"></i> --}}
+                        {{-- <i class="c-orange-500 ti-layout-list-thumb"></i> --}}
                         <i class="fas fa-edit"></i>
                     </span>
-                    <span class="title">Escritores</span>
+                    <span class="title c-white">Escritores</span>
+                    <span class="arrow">
+                        <i class="ti-angle-right"></i>
+                    </span>
                 </a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a class='sidebar-link c-white' href="{{ route('admin.writers.index') }}">
+                            <span class="icon-holder">
+                                {{-- <i class="c-brown-500 ti-email"></i> --}}
+                                <i class="fas fa-list"></i>
+                            </span>
+                            <span class="title c-white">Lista escritores</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class='sidebar-link c-white' href="{{ route('admin.writers.create') }}">
+                            <span class="icon-holder">
+                                {{-- <i class="c-brown-500 ti-email"></i> --}}
+                                <i class="fas fa-edit"></i>
+                            </span>
+                            <span class="title c-white">Crear escritor</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="dropdown-toggle" href="javascript:void(0);">
+                    <span class="icon-holder">
+                        <i class="fas fa-mail-bulk"></i>
+                    </span>
+                    <span class="title c-white">Cartas</span>
+                    <span class="arrow">
+                        <i class="ti-angle-right"></i>
+                    </span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a class='sidebar-link c-white' href="{{ route('admin.letters.index') }}">
+                            <span class="icon-holder">
+                                <i class="fas fa-list"></i>
+                            </span>
+                            <span class="title c-white">Lista de cartas</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class='sidebar-link c-white' href="{{ route('admin.letters.create') }}">
+                            <span class="icon-holder">
+                                <i class="fas fa-edit"></i>
+                            </span>
+                            <span class="title c-white">Redactar carta</span>
+                        </a>
+                    </li>
+                </ul>
             </li>
             <li class="nav-item">
                 <a class='sidebar-link' href="{{ route('admin.redactors.index') }}">
                     <span class="icon-holder">
                         <i class="fas fa-user-tag"></i>
                     </span>
-                    <span class="title">Redactores</span>
+                    <span class="title c-white">Redactores</span>
                 </a>
             </li>
             <li class="nav-item">
@@ -77,7 +129,7 @@
                     <span class="icon-holder">
                         <i class="fas fa-user-tag"></i>
                     </span>
-                    <span class="title">Suscriptores</span>
+                    <span class="title c-white">Suscriptores</span>
                 </a>
             </li>
             <li class="nav-item">
@@ -85,7 +137,7 @@
                     <span class="icon-holder">
                         <i class="fas fa-globe-americas"></i>
                     </span>
-                    <span class="title">Areas</span>
+                    <span class="title c-white">Areas</span>
                 </a>
             </li>
         </ul>
