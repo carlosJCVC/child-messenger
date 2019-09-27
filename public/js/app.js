@@ -45291,9 +45291,8 @@ S2.define('jquery.select2',[
 
 /***/ }),
 /* 21 */
-/***/ (function(module, __webpack_exports__) {
+/***/ (function(module, exports) {
 
-"use strict";
 
 toastr.options = {
     "closeButton": true,

@@ -9,10 +9,10 @@
 </head>
 <body>
     <div class="peers ai-s fxw-nw h-100vh">
-        <div class="peer peer-greed h-100 pos-r bgr-n bgpX-c bgpY-c bgsz-cv" style='background-image: url("assets/img/background/2.jpg")'>
+        <div class="peer peer-greed h-100 pos-r bgr-n bgpX-c bgpY-c bgsz-cv" style='background-image: url("assets/img/background/3")'>
           <div class="pos-a centerXY">
             <div class="bgc-white bdrs-50p pos-r" style='width: 120px; height: 120px;'>
-              <img class="pos-a centerXY" src="{{ asset('/assets/img/logo.png') }}" alt="">
+              <img class="pos-a centerXY w-100" src="{{ asset('/assets/img/logo2.png') }}" alt="">
             </div>
           </div>
         </div>
