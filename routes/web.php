@@ -15,6 +15,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Auth::routes();
+
 Route::group(['prefix' => 'admin','middleware' => ['role:admin,backend access'], 'as' => 'admin.', 'namespace' => 'Admin'], function () {
 
     Route::get('dashboard', [
@@ -221,5 +223,3 @@ Route::group(['prefix' => 'admin','middleware' => ['role:admin,backend access'],
 
 
 });
-
-Auth::routes();
