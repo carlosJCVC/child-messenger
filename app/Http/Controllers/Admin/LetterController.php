@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Letter;
+use App\Models\Image;
+use DB;
 
 class LetterController extends Controller
 {
@@ -12,9 +15,11 @@ class LetterController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $letters = Letter::where('user_id', $request->user()->id)->get();
+
+        return view('admin.letters.index', [ 'letters' => $letters ]);
     }
 
     /**
@@ -35,7 +40,30 @@ class LetterController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $input = $request->all();
+        
+        $letter = new Letter($input);
+        $letter->user_id = $request->user()->id;
+        $letter->save();
+
+        $files = $request->file('letter_image');
+
+        foreach ($files as $key => $file) {
+            $filename  = 'letter-image-' . time() . '.' . $file->getClientOriginalExtension();
+            $path = $file->storeAs('letter_images', $filename);
+            
+            $letter_image = new Image([
+                'name' => $filename,
+                'ext' => $file->getClientOriginalExtension(),
+                'path' => $path,
+                'letter_id' => $letter->id
+            ]);
+            
+            $letter_image->save();
+        }
+
+        return redirect(route('admin.letters.index'))->with([ 'message' => 'Carta enviada exitosamente!', 'alert-type' => 'success' ]);
+
     }
 
     /**
