@@ -1,4 +1,5 @@
 
+
 <div class="form-row">
     <div class="col-md-12 mb-3">
         <label>Nombre</label>
@@ -28,7 +29,7 @@
                 name="permissions[]" 
                 multiple="multiple">
                 @foreach ($permissions as $item)
-                    <option value="{{ $item->name }}" {{ ($role->permissions->contains('name', $item->name)) ? 'selected' : '' }}>{{ $item->name }}</option>
+                    <option value="{{ $item->name }}" {{ (isset($role) && $role->permissions->contains('name', $item->name)) ? 'selected' : '' }}>{{ $item->name }}</option>
                 @endforeach
             </select>
             <div class="valid-feedback">

@@ -46,7 +46,7 @@
                         <img class="w-2r bdrs-50p" src="https://randomuser.me/api/portraits/men/10.jpg" alt="">
                     </div>
                     <div class="peer">
-                        <span class="fsz-sm c-grey-900">Carlos V</span>
+                        <span class="fsz-sm c-white">Carlos V</span>
                     </div>
                 </a>
                 

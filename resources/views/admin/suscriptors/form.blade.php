@@ -6,7 +6,7 @@
             <div class="input-group-prepend">
                 <span class="input-group-text">N</span>
             </div>
-            <input type="text" class="form-control" placeholder="Nombre" name="firstname" value="{{ isset($suscriptor) ? $suscriptor->firstname : '' }}" required>
+            <input type="text" class="form-control" placeholder="Nombre" name="firstname" onkeypress="return SoloLetras(event)" value="{{ isset($suscriptor) ? $suscriptor->firstname : '' }}" required>
             <div class="valid-feedback">
                 Looks good!
             </div>
@@ -23,7 +23,7 @@
             <div class="input-group-prepend">
                 <span class="input-group-text">L</span>
             </div>
-            <input type="text" class="form-control" placeholder="Apellido" name="lastname" value="{{ isset($suscriptor) ? $suscriptor->lastname : '' }}" required>
+            <input type="text" class="form-control" placeholder="Apellido" name="lastname" onkeypress="return SoloLetras(event)" value="{{ isset($suscriptor) ? $suscriptor->lastname : '' }}" required>
             <div class="valid-feedback">
                 Looks good!
             </div>
@@ -41,7 +41,7 @@
             <div class="input-group-prepend">
                 <span class="input-group-text">CI</span>
             </div>
-            <input type="text" class="form-control" placeholder="CI" name="ci" value="{{ isset($suscriptor) ? $suscriptor->ci : '' }}" required>
+            <input type="text" class="form-control" placeholder="CI" name="ci" onkeypress="return numeroCI(event)" value="{{ isset($suscriptor) ? $suscriptor->ci : '' }}" required>
             <div class="valid-feedback">
                 Looks good!
             </div>
@@ -58,7 +58,7 @@
             <div class="input-group-prepend">
                 <span class="input-group-text">C</span>
             </div>
-            <input type="text" class="form-control" placeholder="Ciudad" name="city" value="{{ isset($suscriptor) ? $suscriptor->City : '' }}" required>
+            <input type="text" class="form-control" placeholder="Ciudad" name="city" onkeypress="return SoloLetras(event)" value="{{ isset($suscriptor) ? $suscriptor->City : '' }}" required>
             <div class="valid-feedback">
                 Looks good!
             </div>
@@ -103,6 +103,51 @@
     </div>
     
 </div>
+
+
+
+
+@section('scripts')
+    <script >
+         function numeroCI (e) {
+        key=e.keyCode || e.which;
+        teclado=String.fromCharCode(key);
+        numeros="0123456789";
+        especiales="8-37-38-46";
+        teclado_especial=false;
+        for(var i in especiales){
+            if(key==especiales[i]){
+              teclado_especial=true;
+            }
+        }
+        if (numeros.indexOf(teclado)==-1 && !teclado_especial){
+            return false;
+            }
+                                      
+         }
+    </script>
+
+    <script >
+         function SoloLetras (e) {
+        key=e.keyCode || e.which;
+        teclado=String.fromCharCode(key);
+        letras="abcdefghijklmnñopqrstuvwxyz";
+        especiales="8-37-38-46-164";
+        teclado_especial=false;
+        for(var i in especiales){
+             if(key==especiales[i]){
+               teclado_especial=true;
+               break;
+            }  
+         }
+        if (letras.indexOf(teclado)==-1 && !teclado_especial){
+        return false;
+                 }
+        }
+                                   
+    </script>
+ @endsection
+
 
 
 

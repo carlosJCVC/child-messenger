@@ -6,7 +6,7 @@
             <div class="input-group-prepend">
                 <span class="input-group-text">N</span>
             </div>
-            <input type="text" class="form-control" placeholder="Nombre" name="firstname" value="{{ isset($redactor) ? $redactor->firstname : old('firstname') }}" required>
+            <input type="text" class="form-control" placeholder="Nombre" name="firstname" onkeypress="return SoloLetras(event)" value="{{ isset($redactor) ? $redactor->firstname : old('firstname') }}" required>
             <div class="valid-feedback">
                 Looks good!
             </div>
@@ -23,7 +23,7 @@
             <div class="input-group-prepend">
                 <span class="input-group-text">L</span>
             </div>
-            <input type="text" class="form-control" placeholder="Apellido" name="lastname" value="{{ isset($redactor) ? $redactor->lastname : old('lastname') }}" required>
+            <input type="text" class="form-control" placeholder="Apellido" name="lastname" onkeypress="return SoloLetras(event)" value="{{ isset($redactor) ? $redactor->lastname : old('lastname') }}" required>
             <div class="valid-feedback">
                 Looks good!
             </div>
@@ -88,11 +88,12 @@
 
     <div class="col-md-4 mb-3">
         <label>C.I.</label>
+
         <div class="input-group">
             <div class="input-group-prepend">
                 <span class="input-group-text">CI</span>
             </div>
-            <input type="text" class="form-control" placeholder="C.I." name="ci" value="{{ isset($redactor) ? $redactor->ci : old('ci') }}" required>
+            <input type="text" class="form-control" placeholder="C.I." name="ci" onkeypress="return numero(event)"  value="{{ isset($redactor) ? $redactor->ci : old('ci') }}" required>
             <div class="valid-feedback">
                 Looks good!
             </div>
@@ -104,11 +105,12 @@
 
     <div class="col-md-4 mb-3">
         <label>Telefono/Celular</label>
+                              
         <div class="input-group">
             <div class="input-group-prepend">
                 <span class="input-group-text">P</span>
             </div>
-            <input type="text" class="form-control" placeholder="Telefono" name="phone" value="{{ isset($redactor) ? $redactor->phone : old('phone') }}" required>
+            <input type="text" class="form-control" placeholder="Telefono" name="phone" onkeypress="return numero(event)" value="{{ isset($redactor) ? $redactor->phone : old('phone') }}" required>
             <div class="valid-feedback">
                 Looks good!
             </div>
@@ -117,7 +119,7 @@
             </div>
         </div>
     </div>
-    
+   
 </div>
 
 <div class="form-row">
@@ -152,3 +154,43 @@
         </div>
     </div>
 </div>
+@section('scripts')
+    <script >
+       function numero (e) {
+        key=e.keyCode || e.which;
+        teclado=String.fromCharCode(key);
+        numeros="0123456789";
+        especiales="8-37-38-46";
+        teclado_especial=false;
+        for(var i in especiales){
+        if(key==especiales[i]){
+        teclado_especial=true;
+            }  
+         }
+        if (numeros.indexOf(teclado)==-1 && !teclado_especial){
+        return false;
+                 }
+        }
+                                   
+    </script>
+ 
+    <script >
+         function SoloLetras (e) {
+        key=e.keyCode || e.which;
+        teclado=String.fromCharCode(key);
+        letras="abcdefghijklmnñopqrstuvwxyz";
+        especiales="8-37-38-46-164";
+        teclado_especial=false;
+        for(var i in especiales){
+             if(key==especiales[i]){
+               teclado_especial=true;
+               break;
+            }  
+         }
+        if (letras.indexOf(teclado)==-1 && !teclado_especial){
+        return false;
+                 }
+        }
+                                   
+    </script>
+ @endsection  
