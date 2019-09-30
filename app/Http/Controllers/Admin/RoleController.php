@@ -7,8 +7,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\RoleRequest;
 use Spatie\Permission\Models\Role;
 use DB;
-use Illuminate\Support\Facades\Gate;
-use Illuminate\Support\Arr;
 
 class RoleController extends Controller
 {
@@ -19,10 +17,6 @@ class RoleController extends Controller
      */
     public function index()
     {
-        if (!Gate::allows('list roles')) {
-            return redirect(route('admin.dashboard'))->with([ 'message' => 'No tiene permisos para esta accion!', 'alert-type' => 'error' ]);
-        }
-
         $roles = Role::all();
 
         return view('admin.roles.index', [ 'roles' => $roles]);

@@ -13,17 +13,6 @@ use Spatie\Permission\Models\Role;
 
 class WriterController extends Controller
 {
-
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        //$this->middleware('role:admin,delete writers')->except('logout');
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -44,10 +33,6 @@ class WriterController extends Controller
      */
     public function create()
     {
-        if (!Gate::allows('list writers')) {
-            dd('test');
-        }
-
         return view('admin.writers.create');
     }
 
