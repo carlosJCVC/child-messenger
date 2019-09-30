@@ -80,7 +80,7 @@
             <div class="valid-feedback">
                 Looks good!
             </div>
-            <div class="invalid-feedback {{ $errors->has('email')? 'd-block' : '' }}">
+            <div class="invalid-feedback {{ $errors->has('email')?  'd-block' : '' }}">
                 {{ $errors->has('email')? $errors->first('email') : 'El campo de E-mail es requerido'  }}
             </div>
         </div>
