@@ -29,14 +29,13 @@ class RedactorRequest extends FormRequest
                 return [];
             }
             case 'POST': {
-                //dd('sss');
                 return [
                     'firstname' => 'required|max:100',
                     'lastname' => 'required|max:100',
                     'username' => 'required|max:100',
                     'birthdate' => 'required|max:100',
                     'email' => 'required|email|unique:users,email',
-                    'ci' => 'required|between:3,32',
+                    'ci' => 'required|numeric',
                     'phone' => 'required|numeric',
                     'password' => 'required|between:3,32',
                     'password_confirm' => 'required|same:password',
@@ -50,7 +49,7 @@ class RedactorRequest extends FormRequest
                     'username' => 'required|max:100',
                     'birthdate' => 'required|max:100',
                     'email' => 'required|email|unique:users,email,' . $this->user->id,
-                    'ci' => 'required|between:3,32',
+                    'ci' => 'required|numeric',
                     'phone' => 'required|numeric',
                     'password' => 'required|between:6,32',
                     'password_confirm' => 'required|same:password',
@@ -74,13 +73,13 @@ class RedactorRequest extends FormRequest
             'birthdate.required' => 'El campo :attribute es obligatorio.',
             'email.required' => 'El campo :attribute es obligatorio.',
             'ci.required' => 'El campo :attribute es obligatorio.',
+            'ci.numeric' => 'El campo :attribute solo puede contener numeros.',
             'phone.required' => 'El campo :attribute es obligatorio.',
             'phone.numeric' => 'El campo :attribute solo puede contener numeros.',
             
             'firstname.max' => 'El campo :attribute no debe ser mayor a 100 caracteres.',
             'lastname.max' => 'El campo :attribute no debe ser mayor a 100 caracteres.',
             'username.max' => 'El campo :attribute no debe ser mayor a 100 caracteres.',
-            'username.numeric' => 'El campo :attribute solo debe contener numeros.',
             
             'email.unique' => 'El campo :attribute ya existe.',
             

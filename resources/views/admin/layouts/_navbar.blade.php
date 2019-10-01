@@ -46,32 +46,32 @@
                         <img class="w-2r bdrs-50p" src="https://randomuser.me/api/portraits/men/10.jpg" alt="">
                     </div>
                     <div class="peer">
-                        <span class="fsz-sm c-white">Carlos V</span>
+                        <span class="fsz-sm c-white">{{ Auth::user()->firstname }}</span>
                     </div>
                 </a>
                 
                 <ul class="dropdown-menu fsz-sm">
                     <li>
-                        <a href="" class="d-b td-n pY-5 bgcH-grey-100 c-grey-700">
+                        <a href="{{ route('admin.roles.index') }}" class="d-b td-n pY-5 bgcH-grey-100 c-grey-700">
                             {{-- <i class="ti-settings mR-10"></i> --}}
                             <i class="fas fa-cog"></i>
                             <span>Setting</span>
                         </a>
                     </li>
-                    <li>
+                    {{-- <li>
                         <a href="" class="d-b td-n pY-5 bgcH-grey-100 c-grey-700">
                             {{-- <i class="ti-user mR-10"></i> --}}
-                            <i class="far fa-user"></i>
+{{--                            <i class="far fa-user"></i>
                             <span>Profile</span>
                         </a>
                     </li>
                     <li>
                         <a href="email.html" class="d-b td-n pY-5 bgcH-grey-100 c-grey-700">
                             {{-- <i class="ti-email mR-10"></i> --}}
-                            <i class="far fa-envelope"></i>
+    {{--                        <i class="far fa-envelope"></i>
                             <span>Messages</span>
                         </a>
-                    </li>
+                    </li> --}}
                     <li role="separator" class="divider"></li>
                     <li>
                         <a href="{{ route('logout') }}" class="d-b td-n pY-5 bgcH-grey-100 c-grey-700"

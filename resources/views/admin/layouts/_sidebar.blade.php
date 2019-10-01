@@ -171,7 +171,7 @@
                             <span class="icon-holder">
                                 <i class="fas fa-list"></i>
                             </span>
-                            <span class="title c-white">Lista de cartas</span>
+                            <span class="title c-white">Mis cartas</span>
                         </a>
                     </li>
                     @endcan

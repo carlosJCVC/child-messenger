@@ -43,6 +43,11 @@ class PermissionsTableSeeder extends Seeder
             [ 'name' => 'create areas' ],
             [ 'name' => 'edit areas' ],
             [ 'name' => 'delete areas' ],
+
+            [ 'name' => 'list letters' ],
+            [ 'name' => 'create letters' ],
+            [ 'name' => 'edit letters' ],
+            [ 'name' => 'delete letters' ],
         ];
 
         

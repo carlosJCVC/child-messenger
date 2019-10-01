@@ -6,7 +6,7 @@
             <div class="input-group-prepend">
                 <span class="input-group-text">N</span>
             </div>
-            <input type="text" class="form-control" placeholder="Nombre" name="firstname" value="{{ isset($suscriptor) ? $suscriptor->firstname : '' }}" required>
+            <input type="text" class="form-control" placeholder="Nombre" name="firstname" value="{{ isset($suscriptor) ? $suscriptor->firstname : old('firstname') }}" required>
             <div class="valid-feedback">
                 Looks good!
             </div>
@@ -23,7 +23,7 @@
             <div class="input-group-prepend">
                 <span class="input-group-text">L</span>
             </div>
-            <input type="text" class="form-control" placeholder="Apellido" name="lastname" value="{{ isset($suscriptor) ? $suscriptor->lastname : '' }}" required>
+            <input type="text" class="form-control" placeholder="Apellido" name="lastname" value="{{ isset($suscriptor) ? $suscriptor->lastname : old('lastname') }}" required>
             <div class="valid-feedback">
                 Looks good!
             </div>
@@ -41,12 +41,12 @@
             <div class="input-group-prepend">
                 <span class="input-group-text">CI</span>
             </div>
-            <input type="text" class="form-control" placeholder="CI" name="ci" value="{{ isset($suscriptor) ? $suscriptor->ci : '' }}" required>
+            <input type="text" class="form-control" placeholder="CI" name="ci" value="{{ isset($suscriptor) ? $suscriptor->ci : old('ci') }}" required>
             <div class="valid-feedback">
                 Looks good!
             </div>
             
-            <div class="invalid-feedback {{ $errors->has('CI')? 'd-block' : '' }}">
+            <div class="invalid-feedback {{ $errors->has('ci')? 'd-block' : '' }}">
                 {{ $errors->has('ci')? $errors->first('ci') : 'El campo de CI es requerido'  }}
             </div>
         </div>
@@ -58,7 +58,7 @@
             <div class="input-group-prepend">
                 <span class="input-group-text">C</span>
             </div>
-            <input type="text" class="form-control" placeholder="Ciudad" name="city" value="{{ isset($suscriptor) ? $suscriptor->City : '' }}" required>
+            <input type="text" class="form-control" placeholder="Ciudad" name="city" value="{{ isset($suscriptor) ? $suscriptor->city : old('city') }}" required>
             <div class="valid-feedback">
                 Looks good!
             </div>
@@ -76,7 +76,7 @@
             <div class="input-group-prepend">
                 <span class="input-group-text">@</span>
             </div>
-            <input type="email" class="form-control" placeholder="E-mail" name="email" value="{{ isset($suscriptor) ? $suscriptor->email : '' }}" required>
+            <input type="email" class="form-control" placeholder="E-mail" name="email" value="{{ isset($suscriptor) ? $suscriptor->email : old('email') }}" required>
             <div class="valid-feedback">
                 Looks good!
             </div>
@@ -103,7 +103,3 @@
     </div>
     
 </div>
-
-
-
-

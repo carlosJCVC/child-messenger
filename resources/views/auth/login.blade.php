@@ -6,6 +6,7 @@
 
 @section('content')
 <h4 class="fw-300 c-grey-900 mB-40">Login</h4>
+
 <form method="POST" action="{{ route('login') }}">
     {{ csrf_field() }}
 
@@ -13,18 +14,19 @@
         <label class="text-normal text-dark">E-Mail Address</label>
         <input type="email" class="form-control" name="email" placeholder="carlos@carlos.com" value="{{ old('email') }}" required autofocus>
         @if ($errors->has('email'))
-            <span class="help-block">
+            <div class="invalid-feedback {{ $errors->has('email')? 'd-block' : '' }}">
                 <strong>{{ $errors->first('email') }}</strong>
-            </span>
+            </div>
         @endif
+
     </div>
     <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
         <label class="text-normal text-dark">Password</label>
         <input type="password" class="form-control" name="password" placeholder="Password" required>
         @if ($errors->has('password'))
-            <span class="help-block">
+            <div class="invalid-feedback {{ $errors->has('password')? 'd-block' : '' }}">
                 <strong>{{ $errors->first('password') }}</strong>
-            </span>
+            </div>
         @endif
     </div>
     <div class="form-group">

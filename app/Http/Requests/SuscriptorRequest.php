@@ -34,7 +34,7 @@ class SuscriptorRequest extends FormRequest
                     'email' => 'required|email|unique:users,email',
                     'password' => 'required|between:3,32',
                     'city' => 'required|max:100',
-                    'ci' => 'required|max:100',
+                    'ci' => 'required|numeric|max:100',
                     // 'password_confirm' => 'required|same:password',
                 ];
             }
@@ -46,7 +46,7 @@ class SuscriptorRequest extends FormRequest
                     'email' => 'required|unique:users,email,' . $this->user->id,
                     'password' => 'required|between:3,32',
                     'city' => 'required|max:100',
-                    'ci' => 'required|max:100',
+                    'ci|numeric' => 'required|max:100',
                     // 'password_confirm' => 'between:3,32|same:password',
                 ];
             }
@@ -71,6 +71,7 @@ class SuscriptorRequest extends FormRequest
             'password.required' => 'El campo :attribute es obligatorio.',
             'password.between' => 'El campo :attribute debe tener 3 a 32 caracteres.',
             'ci.required' => 'El campo :attribute es obligatorio.',
+            'ci.numeric' => 'El campo :attribute solo puede contener numeros.',
             'ciudad.required' => 'El campo :attribute es obligatorio.',
             'city.max' => 'El campo :attribute debe tener 2 a 8 caracteres.',
             'city.max' => 'El campo :attribute no debe ser mayor a 100 caracteres.',
