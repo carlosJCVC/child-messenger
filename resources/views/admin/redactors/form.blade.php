@@ -88,6 +88,7 @@
 
     <div class="col-md-4 mb-3">
         <label>C.I.</label>
+
         <div class="input-group">
             <div class="input-group-prepend">
                 <span class="input-group-text">CI</span>
@@ -104,6 +105,7 @@
 
     <div class="col-md-4 mb-3">
         <label>Telefono/Celular</label>
+                              
         <div class="input-group">
             <div class="input-group-prepend">
                 <span class="input-group-text">P</span>
@@ -117,7 +119,7 @@
             </div>
         </div>
     </div>
-    
+   
 </div>
 
 <div class="form-row">
