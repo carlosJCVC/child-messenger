@@ -188,6 +188,41 @@
                 </ul>
             </li>
             @endif
+            @if(Gate::check('list articles') || Gate::check('create articles'))
+            <li class="nav-item dropdown">
+                <a class="dropdown-toggle" href="javascript:void(0);">
+                    <span class="icon-holder">
+                        <i class="fas fa-mail-bulk"></i>
+                    </span>
+                    <span class="title c-white">Articulos</span>
+                    <span class="arrow">
+                        <i class="fas fa-chevron-right"></i>
+                    </span>
+                </a>
+                <ul class="dropdown-menu">
+                    @can('list articles')
+                    <li>
+                        <a class='sidebar-link c-white' href="{{ route('admin.articles.index') }}">
+                            <span class="icon-holder">
+                                <i class="fas fa-list"></i>
+                            </span>
+                            <span class="title c-white">Mis articulos</span>
+                        </a>
+                    </li>
+                    @endcan
+                    @can('create articles')
+                    <li>
+                        <a class='sidebar-link c-white' href="{{ route('admin.articles.create') }}">
+                            <span class="icon-holder">
+                                <i class="fas fa-edit"></i>
+                            </span>
+                            <span class="title c-white">Redactar</span>
+                        </a>
+                    </li>
+                    @endcan
+                </ul>
+            </li>
+            @endif
             @if(Gate::check('list redactors') || Gate::check('create redactors'))
             <li class="nav-item dropdown">
                 <a class="dropdown-toggle" href="javascript:void(0);">

@@ -220,6 +220,33 @@ Route::group(['prefix' => 'admin','middleware' => ['role:admin,backend access'],
         'as' => 'permissions.index',
         'uses' => 'PermissionController@index',
     ])->middleware('permission:list roles');
-
+    //----------- articulos ------------//
+    Route::get('articles', [
+        'as' => 'articles.index',
+        'uses' => 'ArticleController@index',
+    ])->middleware('permission:list articles');
+    Route::get('articles/create', [
+        'as' => 'articles.create',
+        'uses' => 'ArticleController@create',
+    ])->middleware('permission:create articles');
+    Route::post('articles/store', [
+        'as' => 'articles.store',
+        'uses' => 'ArticleController@store',
+    ])->middleware('permission:create articles');
 
 });
+ /*Route::get('articles', [
+        'as' => 'articles.index',
+        'uses' => 'ArticleController@index',
+    ]);
+    Route::get('admin/articles/create', [
+        'as' => 'admin.articles.create',
+        'uses' => 'ArticleController@create',
+    ]);
+    Route::post('articles/store', [
+        'as' => 'articles.store',
+        'uses' => 'ArticleController@store',
+    ]);*/
+
+//Route::get('/admin/articles/create', 'ArticleController@create');
+//Route::get('/usuarios', 'UserController@index');
