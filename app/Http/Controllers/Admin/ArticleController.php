@@ -3,8 +3,12 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Spatie\Permission\Models\Role;
 use App\Models\Article;
-//use db;
+use App\Models\Redactor;
+use db;
+use Session;
+use Redirect;
 class ArticleController extends Controller
 {
 	/**
@@ -12,12 +16,17 @@ class ArticleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-   public function index()
+   public function index(Request $request)
     {
-      $role = Role::where('name', 'article')->first();
-      $articles = $role->users;
+      //$articles = Article::where('article_title', 'articles')->first();
+      //$articles = $article->users;
+    //$articles = Article::where('redactor_id', $request->redactor()->id)->get();
+//dd('hbdhsbhdbsdbs');
+      $articles = Article::where('redactor_id', $request->user()->id)->get();
 
-      return view('admin.articles.index', [ 'articles' => $articles ]);
+        return view('admin.articles.index', [ 'articles' => $articles ]);
+    // return view('admin.articles.index');
+  //  return view('admin.articles.index', [ 'articles' => $articles ]);
     }
   
     /**
@@ -38,7 +47,9 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-        dd(dgjff);
+       // dd('dsdsdsd');
+       
+
 
     }
 }

@@ -206,7 +206,7 @@
                             <span class="icon-holder">
                                 <i class="fas fa-list"></i>
                             </span>
-                            <span class="title c-white">Mis articulos</span>
+                            <span class="title c-white">lista articulos</span>
                         </a>
                     </li>
                     @endcan
@@ -216,7 +216,7 @@
                             <span class="icon-holder">
                                 <i class="fas fa-edit"></i>
                             </span>
-                            <span class="title c-white">Redactar</span>
+                            <span class="title c-white">Redactar articulo</span>
                         </a>
                     </li>
                     @endcan

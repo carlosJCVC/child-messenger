@@ -7,7 +7,7 @@
 
 <div class="container">
     <div class="title">
-        <h1>Redactar un Articulo</h1>
+        <h1>Redactar Articulo</h1>
 
     </div>
         <div class="card border-primary mb-3 mt-2">
@@ -21,12 +21,24 @@
                         <div class="container">
                             <b>Titulo: </b><input type="text" name="article_title" style="margin-bottom: 15px" class="form-control d-inline-flex w-75" placeholder="Escribe el articulo del titulo">
                         </div>
+                        <div class="container">
+                            <b>Autor </b><input type="text" name="article_author" style="margin-bottom: 15px" class="form-control d-inline-flex w-75" placeholder="Escribe el nombre del autor">
+                        </div>
+                        <div class="container">
+                           <b>Palabras claves </b><input type="text" name="article_Keywords" style="margin-bottom: 15px" class="form-control d-inline-flex w-75" placeholder="Escribe las palabras clave">
+                        </div>
                         <div>
                         	<label style="margin-bottom: 15px" name="article_content"><b>Contenido: </b></label>	
                         	<textarea name="article_content" id="article_content" cols="30" rows="10"  class="form-control mt-2"></textarea>
                     	</div>
+                        <div class="container">
+                            <b>Bibliografia </b><input type="text" name="article_bibliography" style="margin-bottom: 15px" class="form-control d-inline-flex w-75" placeholder="Escribe el articulo del titulo">
+                        </div>
                     </div>
-                   
+                    <div class="image">
+                        <input type="file" class="form-control mt-2" name="article_image[]" multiple="true">
+                    </div> 
+                    
                 </div>
                 
 

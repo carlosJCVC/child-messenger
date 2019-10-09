@@ -51,6 +51,7 @@ class PermissionsTableSeeder extends Seeder
 
             [ 'name' => 'list articles' ],
             [ 'name' => 'create articles' ],
+            [ 'name' => 'edit articles' ],
             [ 'name' => 'delete articles' ],
         ];
 
