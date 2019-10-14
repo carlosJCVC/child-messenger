@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateArticlesTable extends Migration
+class CreateArticleImagesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,21 +13,19 @@ class CreateArticlesTable extends Migration
      */
     public function up()
     {
-        Schema::create('articles', function (Blueprint $table) {
+            Schema::create('article_images', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('article_title');
-            $table->string('article_author');
-            $table->string('article_keywords');
-            $table->text('article_content');
-            $table->string('article_bibliography')->unique();
-            $table->integer('user_id')->unsigned();
+            $table->string('name');
+            $table->text('ext');
+            $table->text('path');
 
-            $table->foreign('user_id')
+            $table->integer('article_id')->unsigned();
+
+            $table->foreign('article_id')
                 ->references('id')
-                ->on('users')
+                ->on('articles')
                 ->onDelete('cascade');
-            
-            $table->rememberToken();
+
             $table->timestamps();
         });
     }

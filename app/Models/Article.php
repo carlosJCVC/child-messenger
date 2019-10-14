@@ -7,8 +7,17 @@ use Illuminate\Database\Eloquent\Model;
 class Article extends Model
 {
     protected $fillable = [
-        'article_Title','article_author','article_Keywords','article_content','article_bibliography','path'
+        'article_title','article_author','article_keywords','article_content','article_bibliography','path','user_id'
     ];
+
+
+    /**
+     * Get the comments for the blog post.
+     */
+    public function articleImages()
+    {
+        return $this->hasMany('App\Models\ArticleImage');
+    }
 
     //public function setPathAttribute($path) {
 
@@ -17,13 +26,7 @@ class Article extends Model
     //		$this->attributes['path'] = $nombre;
     //		\Storage::disk('local')->put($nombre, \file::get($path));
     	
-    }
-
-     /**
-     * Get the comments for the blog post.
-     */
-   
-
+}
 
 
 

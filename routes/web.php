@@ -233,20 +233,60 @@ Route::group(['prefix' => 'admin','middleware' => ['role:admin,backend access'],
         'as' => 'articles.store',
         'uses' => 'ArticleController@store',
     ])->middleware('permission:create articles');
+    Route::get('articles/{article}/show', [
+        'as' => 'articles.show',
+        'uses' => 'ArticleController@show',
+    ])->middleware('permission:show articles');
+    Route::get('articles/{article}/edit', [
+        'as' => 'articles.edit',
+        'uses' => 'ArticleController@edit',
+    ])->middleware('permission:edit articles');
+    Route::put('articles/{article}', [
+        'as' => 'articles.update',
+        'uses' => 'ArticleController@update',
+    ])->middleware('permission:edit articles');
+    Route::patch('articles/{article}', [
+        'as' => 'articles.update',
+        'uses' => 'ArticleController@update',
+    ])->middleware('permission:edit articles');
+    Route::delete('articles/{article}', [
+        'as' => 'articles.destroy',
+        'uses' => 'ArticleController@destroy',
+    ])->middleware('permission:delete articles');
+//----------- boletines ------------//
+    Route::get('releases', [
+        'as' => 'releases.index',
+        'uses' => 'ReleaseController@index',
+    ])->middleware('permission:list releases');
+    Route::get('releases/create', [
+        'as' => 'releases.create',
+        'uses' => 'ReleaseController@create',
+    ])->middleware('permission:create releases');
+    Route::post('releases/store', [
+        'as' => 'releases.store',
+        'uses' => 'ReleaseController@store',
+    ])->middleware('permission:create releases');
+    Route::get('releases/{release}/show', [
+        'as' => 'releases.show',
+        'uses' => 'ReleaseController@show',
+    ])->middleware('permission:show releases');
+    Route::get('releases/{release}/edit', [
+        'as' => 'releases.edit',
+        'uses' => 'ReleaseController@edit',
+    ])->middleware('permission:edit releases');
+    Route::put('releases/{release}', [
+        'as' => 'releases.update',
+        'uses' => 'ReleaseController@update',
+    ])->middleware('permission:edit releases');
+    Route::patch('releases/{release}', [
+        'as' => 'releases.update',
+        'uses' => 'ReleaseController@update',
+    ])->middleware('permission:edit releases');
+    Route::delete('releases/{release}', [
+        'as' => 'releases.destroy',
+        'uses' => 'ReleaseController@destroy',
+    ])->middleware('permission:delete releases');
 
 });
- /*Route::get('articles', [
-        'as' => 'articles.index',
-        'uses' => 'ArticleController@index',
-    ]);
-    Route::get('admin/articles/create', [
-        'as' => 'admin.articles.create',
-        'uses' => 'ArticleController@create',
-    ]);
-    Route::post('articles/store', [
-        'as' => 'articles.store',
-        'uses' => 'ArticleController@store',
-    ]);*/
 
-//Route::get('/admin/articles/create', 'ArticleController@create');
 //Route::get('/usuarios', 'UserController@index');
