@@ -3,31 +3,25 @@
 @section('title',"create")
 
 @section('content')
-<script src="{{ asset('/ckeditor/ckeditor.js') }}"></script>
 
     <div class="title">
-        <h1>Redactar Articulo</h1>
+        <h1>Suba su boletin</h1>
     </div>
 
     <div class="card mt-2">
         <div class="card-body">
-            <form class="form-validation" method="post" action="{{ route('admin.articles.store')}}" enctype="multipart/form-data" novalidate>
+            <form class="form-validation" method="post" action="{{ route('admin.releases.store')}}" enctype="multipart/form-data" novalidate>
                 {{ csrf_field() }}
                 
-                @include('admin.articles.form')
+                @include('admin.releases.form')
 
                 <div class="text-center mb-4">
-                    <button class="btn btn-outline-success" type="submit">Enviar Articulo</button>
-                    <a href="{{ route('admin.articles.index') }}" class="btn btn-outline-danger">Cancelar</a>                    
+                    <a href="{{ route('admin.releases.index') }}" class="btn btn-outline-danger">Volver a los boletines</a>                    
                 </div>
             </form>
         </div>
     </div>
-    <script>
-                // Replace the <textarea id="editor1"> with a CKEditor
-                // instance, using default configuration.
-                CKEDITOR.replace( 'article_content' );
-    </script>
+
 @endsection
 @section('scripts')
     <script>

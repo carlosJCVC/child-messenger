@@ -2,6 +2,7 @@
 window._ = require('lodash');
 window.Swal = require('sweetalert2');
 window.toastr = require("toastr");
+window.FilePond = require('filepond');
 
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support

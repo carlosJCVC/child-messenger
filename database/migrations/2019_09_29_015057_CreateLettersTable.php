@@ -18,12 +18,19 @@ class CreateLettersTable extends Migration
             $table->string('letter_greeting');
             $table->text('letter_content');
             $table->text('letter_farewell');
+            $table->boolean('readed')->default(false);
+            $table->integer('area_id')->unsigned();
 
             $table->integer('user_id')->unsigned();
 
             $table->foreign('user_id')
                 ->references('id')
                 ->on('users')
+                ->onDelete('cascade');
+            
+            $table->foreign('area_id')
+                ->references('id')
+                ->on('areas')
                 ->onDelete('cascade');
 
             $table->timestamps();
@@ -37,6 +44,6 @@ class CreateLettersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('areas');
+        Schema::dropIfExists('letters');
     }
 }

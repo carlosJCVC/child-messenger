@@ -46,6 +46,7 @@ class PermissionsTableSeeder extends Seeder
 
             [ 'name' => 'list letters' ],
             [ 'name' => 'create letters' ],
+            [ 'name' => 'show letters' ],
             [ 'name' => 'edit letters' ],
             [ 'name' => 'delete letters' ],
 

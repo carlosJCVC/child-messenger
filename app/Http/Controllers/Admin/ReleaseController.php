@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
+use App\Models\Image;
 use function Psy\debug;
 use DB;
 
@@ -18,7 +18,6 @@ class ReleaseController extends Controller
      */
     public function index(Request $request)
     {
-        dd($request);
         return view('admin.releases.index');
     }
 
@@ -29,7 +28,6 @@ class ReleaseController extends Controller
      */
     public function create()
     {
-    	dd();
         return view('admin.releases.create');
     }
 
@@ -41,9 +39,23 @@ class ReleaseController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->input('articles_selected'));
-        return redirect(route('admin.releases.index'));
+        $input = $request->all();
 
+        foreach ($request->bulletins as $key => $file) {
+            $filename  = 'bulletin-image-' . time() . '.' . $file->getClientOriginalExtension();
+            $path = $file->storeAs('bulletins', $filename);
+            
+            $bulletin = new Image([
+                'name' => $filename,
+                'ext' => $file->getClientOriginalExtension(),
+                'path' => $path,
+                'letter_id' => 1
+            ]);
+            
+            $bulletin->save();
+        }
+
+        return redirect(route('admin.releases.index'));
     }
 
     /**

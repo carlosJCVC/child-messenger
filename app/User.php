@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'firstname', 'lastname', 'username', 'email', 'ci', 'phone', 'address', 'birthdate', 'password',
+        'firstname', 'lastname', 'username', 'email', 'ci', 'phone', 'address', 'birthdate', 'area_id', 'password',
     ];
 
     /**
@@ -27,4 +27,20 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /**
+     * Get the post that owns the comment.
+     */
+    public function area()
+    {
+        return $this->belongsTo('App\Models\Area');
+    }
+
+    /**
+     * Get the letters for the .
+     */
+    public function letters()
+    {
+        return $this->hasMany('App\Models\Letter');
+    }
 }

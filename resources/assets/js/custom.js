@@ -1,4 +1,9 @@
 
+
+const inputElement = document.querySelector('input[type="file"]');
+//const inputElement = $('#file_bulletin');
+const pond = FilePond.create( inputElement );
+
 toastr.options = {
     "closeButton": true,
     "debug": false,
@@ -91,8 +96,8 @@ module.exports = delete_action = (e) => {
     e.preventDefault();
     
     Swal.fire({
-        title: 'are you sure!',
-        text: 'Do you want to detele this register ?',
+        title: 'Estas seguro!',
+        text: 'Estas eguro de eliminar este registro ?',
         type: 'info',
         showCancelButton: true,
         confirmButtonColor: 'hsl(120, 50%, 50%, 1)',

@@ -21,6 +21,8 @@
         "vue": "^2.5.17"
     },
     "dependencies": {
+        "ckeditor": "^4.12.1",
+        "filepond": "^4.7.2",
         "select2": "^4.0.10",
         "sweetalert2": "^8.17.1",
         "toastr": "^2.1.4"

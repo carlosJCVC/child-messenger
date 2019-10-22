@@ -23,6 +23,7 @@ class CreateUsersTable extends Migration
             $table->string('phone')->nullable();
             $table->string('address')->nullable();
             $table->string('birthdate')->nullable();
+            $table->string('area_id')->nullable();
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
@@ -36,6 +37,8 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
+        Schema::dropIfExists('images');
+        Schema::dropIfExists('letters');
         Schema::dropIfExists('users');
     }
 }

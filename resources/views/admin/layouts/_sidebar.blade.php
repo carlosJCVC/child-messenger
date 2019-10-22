@@ -171,7 +171,11 @@
                             <span class="icon-holder">
                                 <i class="fas fa-list"></i>
                             </span>
-                            <span class="title c-white">Mis cartas</span>
+                            @if (Auth::user()->hasRole('admin') || Auth::user()->hasRole('redactor'))
+                                <span class="title c-white">Lista de cartas</span>
+                            @else
+                                <span class="title c-white">Mis cartas</span>
+                            @endif
                         </a>
                     </li>
                     @endcan
@@ -207,16 +211,6 @@
                                 <i class="fas fa-list"></i>
                             </span>
                             <span class="title c-white">lista articulos</span>
-                        </a>
-                    </li>
-                    @endcan
-                    @can('create articles')
-                    <li>
-                        <a class='sidebar-link c-white' href="{{ route('admin.articles.create') }}">
-                            <span class="icon-holder">
-                                <i class="fas fa-edit"></i>
-                            </span>
-                            <span class="title c-white">Redactar articulo</span>
                         </a>
                     </li>
                     @endcan

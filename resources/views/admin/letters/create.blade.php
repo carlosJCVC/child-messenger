@@ -60,3 +60,37 @@
         </div>
     </div>
 @endsection
+
+@section('scripts')
+    <script>
+                if ({{$areas == 0}}) {
+            const swalWithBootstrapButtons = Swal.mixin({
+                customClass: {
+                    confirmButton: 'btn btn-success',
+                    cancelButton: 'btn btn-danger'
+                },
+                buttonsStyling: false
+            })
+
+
+            swalWithBootstrapButtons.fire({
+                title: 'No hay areas registradas',
+                text: "Quiere registrar algun area ?",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Ok!',
+                cancelButtonText: 'No, cancelar!',
+                reverseButtons: true
+            }).then((result) => {
+                if (result.value) {
+                    window.location.replace('{{ route("admin.areas.index") }}')
+                } else if (
+                    /* Read more about handling dismissals below */
+                    result.dismiss === Swal.DismissReason.cancel
+                ) {
+                    window.location.replace('{{ route("admin.dashboard") }}');
+                }
+                })
+        }
+    </script>
+@endsection

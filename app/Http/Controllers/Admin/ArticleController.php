@@ -4,15 +4,13 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Article;
+use App\Models\Letter;
 use App\Models\ArticleImage;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 use function Psy\debug;
 use DB;
-/**
-use Session;
-use Redirect;
-*/
+
 class ArticleController extends Controller
 {
 	/**
@@ -24,7 +22,7 @@ class ArticleController extends Controller
     {
         $articles = Article::where('user_id', $request->user()->id)->get();
         $count = $articles->count();
-
+        
         return view('admin.articles.index', [ 'articles' => $articles , 'count' => $count ]);
     }
 
@@ -33,9 +31,9 @@ class ArticleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Letter $letter)
     {
-        return view('admin.articles.create');
+        return view('admin.articles.create', [ 'letter' => $letter]);
     }
 
     /**
@@ -46,33 +44,16 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-        $files = $request->file('article_image');
-
         $article = new Article([
-            'article_title'=>$request->input('article_title'),
-            'article_author'=>$request->input('article_author'),
-            'article_keywords'=>$request->input('article_keywords'),
-            'article_content'=>$request->input('article_content'),
-            'article_bibliography'=>$request->input('article_bibliography'),
-            'user_id'=>$request->user()->id
+            'article_title' => $request->input('article_title'),
+            'article_author' => $request->user()->firstname . " " . $request->user()->lastname,
+            'article_keywords' => 'keywords',
+            'article_content' => $request->input('article_content'),
+            'article_bibliography' => 'bibliografia',
+            'user_id' => $request->user()->id
         ]);
-        $article->save();
 
-        $i=1;
-        foreach ($files as $key => $file) {
-            $filename  = 'article-image-' . $i .'-' . time() . '.'. $file->getClientOriginalExtension();
-            $path = $file->storeAs('article_images', $filename);
-            
-            $article_image = new ArticleImage([
-                'name' => $filename,
-                'ext' => $file->getClientOriginalExtension(),
-                'path' => $path,
-                'article_id' => $article->id
-            ]);
-            
-            $article_image->save();
-            $i++;
-        }
+        $article->save();
         
         return redirect(route('admin.articles.index'))->with([ 'message' => 'Articulo creado exitosamente!', 'alert-type' => 'success' ]);
 
@@ -111,44 +92,11 @@ class ArticleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        if($request->hasFile('article_image')){
+    public function update(Request $request, Article $article)
+    {   
+        $input = $request->all();
 
-            $files = $request->file('article_image');
-
-            $images = ArticleImage::where('article_id', $id)->get();
-            
-            foreach ($images as $key => $image) {
-                Storage::delete($image->path);
-            }
-            
-            $i=1;
-        
-            foreach ($files as $key => $file) {
-                $filename  = 'article-image-' . $i .'-' . time() . '.'. $file->getClientOriginalExtension();
-                $path = $file->storeAs('article_images', $filename);
-            
-                $article_image = new ArticleImage([
-                    'name' => $filename,
-                    'ext' => $file->getClientOriginalExtension(),
-                    'path' => $path,
-                    'article_id' => $article->id
-                ]);
-                
-                $article_image->save();
-                $i++;
-            }
-
-        }
-
-        $aux = DB::table('articles')->where('id', $id);
-        
-        $article = $aux->update(['article_title'=>$request->input('article_title'),
-                'article_author'=>$request->input('article_author'),
-                'article_keywords'=>$request->input('article_keywords'),
-                'article_content'=>$request->input('article_content'),
-                'article_bibliography'=>$request->input('article_bibliography')]);
+        $article->update($input);
         
         return redirect(route('admin.articles.index'))->with([ 'message' => 'Articulo modificado exitosamente!', 'alert-type' => 'success' ]);
 
@@ -160,15 +108,10 @@ class ArticleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Article $article)
     {
-        $files = ArticleImage::where('article_id', $id)->get();
-        foreach ($files as $key => $file) {
-            Storage::delete($file->path);
-        }
+        $article->delete();
 
-        $article = DB::delete('delete from articles where id = ?',[$id]);
-
-        return redirect(route('admin.articles.index'))->with([ 'message' => 'Articulo eliminado exitosamente!', 'alert-type' => 'success' ]);
+        return redirect(route('admin.articles.index'))->with([ 'message' => 'Articulo eliminado exitosamente!', 'alert-type' => 'danger' ]);
     }
 }

@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Letter;
+use App\Models\Area;
 use App\Models\Image;
 use DB;
+use GuzzleHttp\Client;
 
 class LetterController extends Controller
 {
@@ -17,9 +19,17 @@ class LetterController extends Controller
      */
     public function index(Request $request)
     {
-        $letters = Letter::where('user_id', $request->user()->id)->get();
+        if ($request->user()->hasRole('writer')) {
+            $letters = Letter::where('user_id', $request->user()->id)->get();
+        }else if ($request->user()->hasRole('redactor')) {
+            $letters = Letter::where('area_id', $request->user()->area_id)->get();
+        } else if ($request->user()->hasRole('admin')) {
+            $letters = Letter::all();
+        }
+        
+        $areas = DB::table('areas')->count();
 
-        return view('admin.letters.index', [ 'letters' => $letters ]);
+        return view('admin.letters.index', [ 'letters' => $letters, 'areas' => $areas ]);
     }
 
     /**
@@ -29,7 +39,9 @@ class LetterController extends Controller
      */
     public function create()
     {
-        return view('admin.letters.create');
+        $areas = DB::table('areas')->count();
+
+        return view('admin.letters.create', [ 'areas' => $areas ]);
     }
 
     /**
@@ -41,9 +53,29 @@ class LetterController extends Controller
     public function store(Request $request)
     {
         $input = $request->all();
+
+        $client = new Client([
+            // Base URI is used with relative requests
+            'base_uri' => 'http://localhost:3000/api/v1/',
+            // You can set any number of default request options.
+            'timeout'  => 2.0,
+        ]);
+
+        $options = [
+            'form_params' => [
+                "content" => $request->letter_content
+            ]
+        ];
+
+        // Send a request to https://foo.com/api/analize
+        $response = $client->post('analize', $options);
+        $category = json_decode( $response->getBody() );
+        
+        $area = Area::where("name", $category)->first();
+        $input['area_id'] = $area->id;
+        $input['user_id'] = $request->user()->id;
         
         $letter = new Letter($input);
-        $letter->user_id = $request->user()->id;
         $letter->save();
 
         $files = $request->file('letter_image');
@@ -72,9 +104,12 @@ class LetterController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Letter $letter)
     {
-        //
+        $letter->readed = true;
+        $letter->save();
+        
+        return response()->json($letter);
     }
 
     /**

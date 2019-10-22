@@ -31,7 +31,9 @@ class RedactorController extends Controller
      */
     public function create()
     {
-        return view('admin.redactors.create');
+        $areas = DB::table('areas')->get();
+
+        return view('admin.redactors.create', [ 'areas' => $areas]);
     }
 
     /**
@@ -72,7 +74,9 @@ class RedactorController extends Controller
      */
     public function edit(User $user)
     {
-        return view('admin.redactors.edit', [ 'redactor' => $user ]);
+        $areas = DB::table('areas')->get();
+        
+        return view('admin.redactors.edit', [ 'redactor' => $user, 'areas' => $areas ]);
     }
 
     /**

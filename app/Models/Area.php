@@ -14,4 +14,20 @@ class Area extends Model
     protected $fillable = [
         'name', 'description',
     ];
+
+    /**
+     * Get the comments for the blog post.
+     */
+    public function letters()
+    {
+        return $this->hasMany('App\Models\Letter');
+    }
+
+    /**
+     * Get the comments for the blog post.
+     */
+    public function users()
+    {
+        return $this->hasMany('App\Models\User');
+    }
 }

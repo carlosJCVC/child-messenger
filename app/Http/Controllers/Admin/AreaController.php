@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\AreaRequest;
 use App\Models\Area;
 use DB;
+use GuzzleHttp\Client;
 
 class AreaController extends Controller
 {
@@ -42,6 +43,22 @@ class AreaController extends Controller
     {
         $input = $request->all();
 
+        $client = new Client([
+            // Base URI is used with relative requests
+            'base_uri' => 'http://localhost:3000/api/v1/',
+            // You can set any number of default request options.
+            'timeout'  => 2.0,
+        ]);
+
+        $options = [
+            'form_params' => [
+                "name" => $request->name,
+                "description" => $request->description,
+            ]
+        ];
+
+        $response = $client->post('train', $options);
+        
         $area = new Area($input);
         $area->save();
 
@@ -81,6 +98,22 @@ class AreaController extends Controller
     {
         $input = $request->all();
 
+        $client = new Client([
+            // Base URI is used with relative requests
+            'base_uri' => 'http://localhost:3000/api/v1/',
+            // You can set any number of default request options.
+            'timeout'  => 2.0,
+        ]);
+
+        $options = [
+            'form_params' => [
+                "name" => $request->name,
+                "description" => $request->description,
+            ]
+        ];
+
+        $response = $client->post('train', $options);
+        
         $area->update($input);
 
         return redirect()->route('admin.areas.index')->with(['message' => 'Area actualizado exitosamente!', 'alert-type' => 'success']);

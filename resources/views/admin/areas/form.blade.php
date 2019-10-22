@@ -1,6 +1,6 @@
 
 <div class="form-row">
-    <div class="col-md-6 mb-3">
+    <div class="col-md-12 mb-3">
         <label>Nombre</label>
         <div class="input-group">
             <div class="input-group-prepend">
@@ -17,7 +17,7 @@
         </div>
     </div>
 
-    <div class="col-md-6 mb-3">
+    <div class="col-md-12 mb-3">
         <label>Descripcion</label>
         <div class="input-group">
             <div class="input-group-prepend">
@@ -25,7 +25,7 @@
             </div>
         <textarea type="text" class="form-control" placeholder="Descripcion" name="description" required>{{ isset($area) ? $area->description : '' }}</textarea>
             <div class="valid-feedback">
-                Looks good!
+                Campo llenado correctamente
             </div>
             <div class="invalid-feedback {{ $errors->has('description')? 'd-block' : '' }}">
                 {{ $errors->has('description')? $errors->first('description') : 'El campo de Descripcion es requerido'  }}

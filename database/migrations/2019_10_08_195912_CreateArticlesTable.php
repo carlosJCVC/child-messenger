@@ -19,7 +19,7 @@ class CreateArticlesTable extends Migration
             $table->string('article_author');
             $table->string('article_keywords');
             $table->text('article_content');
-            $table->string('article_bibliography')->unique();
+            $table->string('article_bibliography');
             $table->integer('user_id')->unsigned();
 
             $table->foreign('user_id')
@@ -39,6 +39,6 @@ class CreateArticlesTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('articles');
     }
 }

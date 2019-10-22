@@ -3,7 +3,6 @@
 @section('title',"edit")
 
 @section('content')
-<script src="{{ asset('/ckeditor/ckeditor.js') }}"></script>
 
     <div class="title">
         <h1>Editando Articulo</h1>
@@ -24,11 +23,6 @@
             </form>
         </div>
     </div>
-    <script>
-                // Replace the <textarea id="editor1"> with a CKEditor
-                // instance, using default configuration.
-                CKEDITOR.replace( 'article_content' );
-    </script>
 @endsection
 @section('scripts')
     <script>
