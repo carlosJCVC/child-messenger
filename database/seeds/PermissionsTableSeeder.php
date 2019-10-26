@@ -61,6 +61,8 @@ class PermissionsTableSeeder extends Seeder
             [ 'name' => 'show releases' ],
             [ 'name' => 'edit releases' ],
             [ 'name' => 'delete releases' ],
+            
+            [ 'name' => 'train machine' ],
         ];
 
         

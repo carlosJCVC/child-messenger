@@ -3,16 +3,6 @@
 @section('title', 'List')
 
 @section('content')
-    <style>
-        .thum {
-            width: 100%;
-            height: 100px;
-        }
-        .letterhere {
-            width: 25px;
-            height: 25px;
-        }
-    </style>
     <div class="container">
         <div class="row">
             <div class="col">
@@ -28,7 +18,36 @@
 
                     </div>
                     <div class="card-body">
-                        boletines
+                        <div class="row">
+                            <div class="col-6 col-md-4 col-lg-3">
+                                <div class="card text-center mb-3">
+                                    <img class="card-img-top thum bg-light " src="/images/svg/book.svg" alt="Card image cap">
+                                    <div class="card-body">
+                                        <p class="card-text">
+                                            <strong>
+                                                <a class="btn-link" href="#">
+                                                    Mis Boletines
+                                                </a>
+                                            </strong>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6 col-md-4 col-lg-3">
+                                <div class="card text-center mb-3">
+                                    <img class="card-img-top thum bg-light " src="/images/svg/link.svg" alt="Card image cap">
+                                    <div class="card-body">
+                                        <p class="card-text">
+                                            <strong>
+                                                <a class="btn-link" href="#">
+                                                    Plantillas
+                                                </a>
+                                            </strong>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -19,6 +19,26 @@ class LetterController extends Controller
      */
     public function index(Request $request)
     {
+        $client = new Client([
+            // Base URI is used with relative requests
+            'base_uri' => 'http://localhost:3000/api/v1/',
+            // You can set any number of default request options.
+            'timeout'  => 2.0,
+        ]);
+
+        $options = [
+            'form_params' => [
+                "content" => 'test'
+            ]
+        ];
+
+        // Send a request to https://foo.com/api/analize
+        $response = $client->post('analize', $options);
+
+        if ($response->getStatusCode() == 204) {
+            return redirect(route('admin.train.machine.index'))->with([ 'message' => 'Entrena tus areas primero', 'alert-type' => 'info' ]);              
+        }
+
         if ($request->user()->hasRole('writer')) {
             $letters = Letter::where('user_id', $request->user()->id)->get();
         }else if ($request->user()->hasRole('redactor')) {
@@ -69,9 +89,13 @@ class LetterController extends Controller
 
         // Send a request to https://foo.com/api/analize
         $response = $client->post('analize', $options);
-        $category = json_decode( $response->getBody() );
+        if ($response->getStatusCode() == 204) {
+            return redirect(route('admin.train.machine.index'))->with([ 'message' => 'Entrena tus areas primero', 'alert-type' => 'info' ]);              
+        }
         
-        $area = Area::where("name", $category)->first();
+        $category = json_decode( $response->getBody() );
+
+        $area = Area::where("slug", $category)->first();
         $input['area_id'] = $area->id;
         $input['user_id'] = $request->user()->id;
         

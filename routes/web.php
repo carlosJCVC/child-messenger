@@ -309,6 +309,19 @@ Route::group(['prefix' => 'admin','middleware' => ['role:admin,backend access'],
         'as' => 'releases.destroy',
         'uses' => 'ReleaseController@destroy',
     ])->middleware('permission:delete releases');
+
+    // Train machine
+    Route::get('train_machine', [
+        'as' => 'train.machine.index',
+        'uses' => 'TrainMachineController@train',
+    ])->middleware('permission:train machine');
+
+    // Train machine
+    Route::get('train_machine/store', [
+        'as' => 'train.machine.store',
+        'uses' => 'TrainMachineController@store',
+    ])->middleware('permission:train machine');
+
 });
 
 //Route::get('/usuarios', 'UserController@index');

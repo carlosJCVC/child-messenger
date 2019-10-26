@@ -2,32 +2,25 @@
 
 @section('title', 'Create')
 
-@section('sidebar')
-    @parent
-
-    <p>This is appended to the master sidebar.</p>
-@endsection
-
 @section('content')
-    <div class="title">
-        <h1>Crear area</h1>
+<div class="card mt-2">
+    <div class="card-header title">
+        <h4>Creando Area</h4>
     </div>
 
-    <div class="card mt-2">
-        <div class="card-body">
-            <form class="form-validation" method="POST" action="{{ route('admin.areas.store') }}" novalidate>
-                {{ csrf_field() }}
+    <div class="card-body">
+        <form class="form-validation" method="POST" action="{{ route('admin.areas.store') }}" novalidate>
+            {{ csrf_field() }}
 
-                @include('admin.areas.form')
+            @include('admin.areas.form')
 
-                <div class="text-center">
-                    <button class="btn btn-outline-success" type="submit">Guardar</button>
-                    <a href="{{ route('admin.areas.index') }}" class="btn btn-outline-danger">Cancelar</a>
-                </div>
-            </form>
-        </div>
+            <div class="text-center">
+                <button class="btn btn-outline-success" type="submit">Guardar</button>
+                <a href="{{ route('admin.areas.index') }}" class="btn btn-outline-danger">Cancelar</a>
+            </div>
+        </form>
     </div>
-    
+</div>
 @endsection
 
 @section('scripts')

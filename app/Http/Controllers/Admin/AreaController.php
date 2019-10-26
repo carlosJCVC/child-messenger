@@ -42,23 +42,8 @@ class AreaController extends Controller
     public function store(AreaRequest $request)
     {
         $input = $request->all();
+        $input['slug'] = ucfirst($request->name);
 
-        $client = new Client([
-            // Base URI is used with relative requests
-            'base_uri' => 'http://localhost:3000/api/v1/',
-            // You can set any number of default request options.
-            'timeout'  => 2.0,
-        ]);
-
-        $options = [
-            'form_params' => [
-                "name" => $request->name,
-                "description" => $request->description,
-            ]
-        ];
-
-        $response = $client->post('train', $options);
-        
         $area = new Area($input);
         $area->save();
 
@@ -97,20 +82,6 @@ class AreaController extends Controller
     public function update(AreaRequest $request, Area $area)
     {
         $input = $request->all();
-
-        $client = new Client([
-            // Base URI is used with relative requests
-            'base_uri' => 'http://localhost:3000/api/v1/',
-            // You can set any number of default request options.
-            'timeout'  => 2.0,
-        ]);
-
-        $options = [
-            'form_params' => [
-                "name" => $request->name,
-                "description" => $request->description,
-            ]
-        ];
 
         $response = $client->post('train', $options);
         
